@@ -17,46 +17,34 @@ proc triangleVertices(t: Triangle): (Vector2, Vector2, Vector2) = (
 
 proc generateTriangles(n: int): seq[Triangle] =
   for i in 0..<n:
-    let heading = rand(2 * PI)
+    let
+      heading = rand(2 * PI)
+      speed = rand(minSpeed..maxSpeed)
+      (w, h) = triangleSize.tuple
+      x = rand(w..(ScreenWidth.float - w))
+      y = rand(h..(ScreenHeight.float - h))
     result.add(Triangle(
-      pos: Vector2(x: rand(ScreenWidth.float - triangleSize.x),
-                   y: rand(ScreenHeight.float - triangleSize.y)),
-      heading: heading,
-      targetHeading: heading,
-      speed: rand(minSpeed..maxSpeed)
+      pos: Vector2(x: x, y: y),
+      vel: Vector2.fromRad(heading) * speed,
     ))
-
-func getOptimalTurnChange*(current, target: float): float =
-  result = target - current
-  if result > PI:
-    result -= 2 * PI
-  if result < -PI:
-    result += 2 * PI
-
-proc turnTriangles(triangles: var seq[Triangle], turnSpeed, dt: float) =
-  for t in triangles.mitems:
-    var change = getOptimalTurnChange(t.heading, t.targetHeading)
-    t.heading += change * turnSpeed * dt
 
 proc moveTriangles(triangles: var seq[Triangle], dt: float) =
   for t in triangles.mitems:
-    t.pos.x += cos(t.heading) * t.speed * dt
-    t.pos.y += sin(t.heading) * t.speed * dt
+    t.pos += t.vel * dt
 
-proc evadeEdges(triangles: var seq[Triangle]) =
-  let
-    screen = Rectangle(x: 0.0, y: 0.0,
-                       width: ScreenWidth.float,
-                       height: ScreenHeight.float)
-  for t in triangles.mitems:
-    if t.pos.x < screen.x - evadeEdgesMargin:
-      t.targetHeading = t.pos.headingTowards(t.pos.withX(screen.x)) - PI
-    elif t.pos.x > screen.x + screen.width + evadeEdgesMargin:
-      t.targetHeading = t.pos.headingTowards(t.pos.withX(screen.x + screen.width))
-    elif t.pos.y < screen.y - evadeEdgesMargin:
-      t.targetHeading = t.pos.headingTowards(t.pos.withY(screen.y)) - PI
-    elif t.pos.y > screen.y + screen.height + evadeEdgesMargin:
-      t.targetHeading = t.pos.headingTowards(t.pos.withY(screen.y + screen.height))
+#proc evadeEdges(triangles: var seq[Triangle]) =
+#  let screen = Rectangle(x: 0.0, y: 0.0,
+#                       width: ScreenWidth.float,
+#                       height: ScreenHeight.float)
+#  for t in triangles.mitems:
+#    if t.pos.x < screen.x - viewRadius:
+#      t.vel.x *= -1
+#    elif t.pos.x > screen.x + screen.width + viewRadius:
+#      t.targetHeading = t.pos.headingTowards(t.pos.withX(screen.x + screen.width))
+#    elif t.pos.y < screen.y - viewRadius:
+#      t.targetHeading = t.pos.headingTowards(t.pos.withY(screen.y)) - PI
+#    elif t.pos.y > screen.y + screen.height + viewRadius:
+#      t.targetHeading = t.pos.headingTowards(t.pos.withY(screen.y + screen.height))
 
 proc drawTriangles(triangles: seq[Triangle], color: Color) =
   for t in triangles:
@@ -70,17 +58,16 @@ when isMainModule:
   setTargetFPS(60)
 
   var
-    triangles = generateTriangles(400)
+    triangles = generateTriangles(NumTriangles)
 
   while not windowShouldClose():
     let dt = dt()
-    rule_align(triangles, dt)
+    #rule_align(triangles, dt)
     #rule_separate(triangles, 20.0, dt)
-    #rule_cohesion(triangles, dt)
+    rule_cohesion(triangles, dt)
 
-    turnTriangles(triangles, turnSpeed, dt)
     moveTriangles(triangles, dt)
-    evadeEdges(triangles)
+    #evadeEdges(triangles)
 
     beginDrawing()
     drawCircleLines(centerOfMass(triangles).x.int, centerOfMass(triangles).y.int, 5, Red)

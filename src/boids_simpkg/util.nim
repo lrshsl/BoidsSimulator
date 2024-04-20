@@ -7,23 +7,31 @@ const
   Right* = Vector2(x: 1, y: 0)
   Left* = Vector2(x: -1, y: 0)
 
+# Parameters
 var
   triangleSize* = Vector2(x: 15, y: 30) # width, height
-  turnSpeed* = 1.0
-  minSpeed* = 50.0
+  NumTriangles* = 50
+  minSpeed* = 70.0
   maxSpeed* = 150.0
-  evadeEdgesMargin* = 100.0
+  viewRadius* = 100.0
+  separateFactor* = 1.0
+  alignFactor* = 1.0
+  cohesionFactor* = 1.0
 
 # Triangle
 type
   Triangle* = object
     pos*: Vector2
-    heading*: float
-    targetHeading*: float
-    speed*: float
+    vel*: Vector2
+
+func `heading`*(t: Triangle): float =
+  arctan2(t.vel.y, t.vel.x)
 
 # Vector2 extensions
-func `fromRad`*(_: Vector2, radians: float): Vector2 =
+func `tuple`*(v: Vector2): (float, float) =
+  (v.x.float, v.y.float)
+
+func `fromRad`*(_: typedesc[Vector2], radians: float): Vector2 =
   Vector2(x: cos(radians), y: sin(radians))
 
 func `headingTowards`*(pos: Vector2, target: Vector2): float =
