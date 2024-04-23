@@ -1,4 +1,5 @@
 import boids_simpkg/rules
+import boids_simpkg/ui
 import boids_simpkg/util
 
 import nimraylib_now
@@ -6,9 +7,6 @@ import nimraylib_now
 import random
 import math
 import system/iterators
-
-const
-  (ScreenWidth, ScreenHeight) = (1800, 900)
 
 proc triangleVertices(t: Triangle): (Vector2, Vector2, Vector2) = (
     t.pos + Up.rotate(t.heading + PI/2) * triangleSize.y * 2/3,
@@ -32,23 +30,46 @@ proc moveTriangles(triangles: var seq[Triangle], dt: float) =
   for t in triangles.mitems:
     t.pos += t.vel * dt
 
-#proc evadeEdges(triangles: var seq[Triangle]) =
-#  let screen = Rectangle(x: 0.0, y: 0.0,
-#                       width: ScreenWidth.float,
-#                       height: ScreenHeight.float)
-#  for t in triangles.mitems:
-#    if t.pos.x < screen.x - viewRadius:
-#      t.vel.x *= -1
-#    elif t.pos.x > screen.x + screen.width + viewRadius:
-#      t.targetHeading = t.pos.headingTowards(t.pos.withX(screen.x + screen.width))
-#    elif t.pos.y < screen.y - viewRadius:
-#      t.targetHeading = t.pos.headingTowards(t.pos.withY(screen.y)) - PI
-#    elif t.pos.y > screen.y + screen.height + viewRadius:
-#      t.targetHeading = t.pos.headingTowards(t.pos.withY(screen.y + screen.height))
+proc evadeEdges(triangles: var seq[Triangle]) =
+  let screen = Rectangle(x: 0.0, y: 0.0,
+                       width: ScreenWidth.float,
+                       height: ScreenHeight.float)
+  for t in triangles.mitems:
+    let
+      distanceLeft = t.pos.x - screen.x
+      distanceRight = screen.x + screen.width - t.pos.x
+      distanceTop = t.pos.y - screen.y
+      distanceBottom = screen.y + screen.height - t.pos.y
+
+    if distanceLeft < viewRadius:
+      t.vel.x += (viewRadius - distanceLeft) * evadeEdgesFactor
+    elif distanceRight < viewRadius:
+      t.vel.x += -(viewRadius - distanceRight) * evadeEdgesFactor
+    elif distanceTop < viewRadius:
+      t.vel.y += (viewRadius - distanceTop) * evadeEdgesFactor
+    elif distanceBottom < viewRadius:
+      t.vel.y += -(viewRadius - distanceBottom) * evadeEdgesFactor
+
+func getColor(i, n: int): Color =
+  case i mod 9
+    of 0: Red
+    of 1: Orange
+    of 2: Yellow
+    of 3: Green
+    of 4: Blue
+    of 5: Purple
+    of 6: Violet
+    of 7: White
+    of 8: Black
+    else: White
 
 proc drawTriangles(triangles: seq[Triangle], color: Color) =
   for t in triangles:
-    let (a, b, c) = triangleVertices(t)
+    let
+      (a, b, c) = triangleVertices(t)
+      cHeading = PI - abs(t.heading)
+      cval = uint8(cHeading * 255.0 / PI)
+      color = Color(r: 0, g: 255 - cval, b: cval, a: 255)
     drawTriangle(a, b, c, color)
 
 func dt(): float = getFrameTime()
@@ -62,17 +83,25 @@ when isMainModule:
 
   while not windowShouldClose():
     let dt = dt()
+
+    ### Input ###
+    mainUi.update()
+
+    ### Rules ###
     #rule_align(triangles, dt)
-    #rule_separate(triangles, 20.0, dt)
+    #rule_separate(triangles, dt)
     rule_cohesion(triangles, dt)
+    evadeEdges(triangles)
 
     moveTriangles(triangles, dt)
-    #evadeEdges(triangles)
 
+    ### Draw ###
     beginDrawing()
-    drawCircleLines(centerOfMass(triangles).x.int, centerOfMass(triangles).y.int, 5, Red)
     clearBackground(Black)
-    drawTriangles(triangles, Yellow)
+    drawCircleLines(centerOfMass(triangles).x.int, centerOfMass(triangles).y.int, 5, Red)
+    drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, viewRadius, Green)
+    drawTriangles(triangles, Purple)
+    mainUi.draw()
     drawFPS(10, 10)
     endDrawing()
 

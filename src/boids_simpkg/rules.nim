@@ -12,13 +12,26 @@ proc rule_cohesion*(boids: var seq[Triangle], dt: float) =
     t.vel += (centerOfMass(boids) - t.pos) * cohesionFactor * dt
     t.vel = t.vel.clampValue(minSpeed, maxSpeed)
 
-proc rule_separate*(boids: var seq[Triangle], neighborDistance: float, dt: float) =
+proc rule_separate*(boids: var seq[Triangle], dt: float) =
   for t in boids.mitems:
     for other in boids:
       if t == other:
         continue
-      let d = distance(t.pos, other.pos)
+      let
+        d = distance(t.pos, other.pos)
+        strength = 1.0 / d
       if d < viewRadius:
-        t.vel += (other.pos - t.pos) / d * separateFactor * dt
+        t.vel += (t.pos - other.pos) * strength * separateFactor * dt
+        t.vel = t.vel.clampValue(minSpeed, maxSpeed)
 
-proc rule_align*(boids: var seq[Triangle], dt: float) = discard
+proc rule_align*(boids: var seq[Triangle], dt: float) =
+  for t in boids.mitems:
+    for other in boids:
+      if t == other:
+        continue
+      let
+        d = distance(t.pos, other.pos)
+        strength = 1.0 / d
+      if d < viewRadius:
+        t.vel += (other.heading - t.heading) * strength * alignFactor * dt
+        t.vel = t.vel.clampValue(minSpeed, maxSpeed)

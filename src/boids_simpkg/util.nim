@@ -7,16 +7,20 @@ const
   Right* = Vector2(x: 1, y: 0)
   Left* = Vector2(x: -1, y: 0)
 
+const
+  (ScreenWidth*, ScreenHeight*) = (1800, 900)
+
 # Parameters
 var
   triangleSize* = Vector2(x: 15, y: 30) # width, height
-  NumTriangles* = 50
-  minSpeed* = 70.0
-  maxSpeed* = 150.0
-  viewRadius* = 100.0
-  separateFactor* = 1.0
-  alignFactor* = 1.0
-  cohesionFactor* = 1.0
+  NumTriangles* = 80
+  minSpeed* = 140.0
+  maxSpeed* = 250.0
+  viewRadius* = 250.0
+  separateFactor* = 40.0
+  alignFactor* = 8.0
+  cohesionFactor* = 0.6
+  evadeEdgesFactor* = 0.1
 
 # Triangle
 type
