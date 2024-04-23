@@ -12,15 +12,15 @@ const
 
 # Parameters
 var
-  triangleSize* = Vector2(x: 15, y: 30) # width, height
-  NumTriangles* = 80
-  minSpeed* = 140.0
-  maxSpeed* = 250.0
-  viewRadius* = 250.0
-  separateFactor* = 40.0
-  alignFactor* = 8.0
-  cohesionFactor* = 0.6
-  evadeEdgesFactor* = 0.1
+  triangleSize* = Vector2(x: 10, y: 20) # width, height
+  NumTriangles* = 400
+  minSpeed* = 240.0
+  maxSpeed* = 400.0
+  viewRadius* = 150.0
+  separateFactor* = 50.0
+  alignFactor* = 22.0
+  cohesionFactor* = 13.0
+  evadeEdgesFactor* = 0.2
 
 # Triangle
 type

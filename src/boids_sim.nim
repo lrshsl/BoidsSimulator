@@ -63,7 +63,7 @@ func getColor(i, n: int): Color =
     of 8: Black
     else: White
 
-proc drawTriangles(triangles: seq[Triangle], color: Color) =
+proc drawTriangles(triangles: seq[Triangle]) =
   for t in triangles:
     let
       (a, b, c) = triangleVertices(t)
@@ -88,22 +88,26 @@ when isMainModule:
     mainUi.update()
 
     ### Rules ###
-    #rule_align(triangles, dt)
-    #rule_separate(triangles, dt)
-    rule_cohesion(triangles, dt)
+    apply_rules(triangles, dt)
     evadeEdges(triangles)
 
     moveTriangles(triangles, dt)
 
     ### Draw ###
     beginDrawing()
+
+    # Clear
     clearBackground(Black)
-    drawCircleLines(centerOfMass(triangles).x.int, centerOfMass(triangles).y.int, 5, Red)
+    # View radius
     drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, viewRadius, Green)
-    drawTriangles(triangles, Purple)
+    # Triangles
+    drawTriangles(triangles)
+    # User interface
     mainUi.draw()
     drawFPS(10, 10)
+
     endDrawing()
 
   closeWindow()
   echo "<<Done>>"
+
