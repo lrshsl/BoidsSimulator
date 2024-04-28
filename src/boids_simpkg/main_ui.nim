@@ -16,9 +16,9 @@ const
   borderColor = White
   showSliderName = true
   showSliderValue = true
-  sliderNames = [
+  sliderInfo = [
       # Name, default, min, max
-      ("Num Triangles", 600.0, 1.0, 10_000.0),
+      ("Num Triangles", 600.0, 1.0, 1_000.0),
       ("View Radius", 150.0, 0.0, 600.0),
       ("Evade Edges", 0.2, 0.0, 1.0),
       ("Min Speed", 250.0, 50.0, 500.0),
@@ -61,7 +61,7 @@ proc createDefaultTextAt(pos: Vector2, text: string): Widget =
          borderColor: borderColor)
 
 proc createWidgets(): seq[Widget] =
-  for i, (name, defaultVal, minVal, maxVal) in sliderNames:
+  for i, (name, defaultVal, minVal, maxVal) in sliderInfo:
     let
       x = float(i mod numWidgetsPerRow) * widgetWidth + margin
       y = float(int(i / numWidgetsPerRow)) * (widgetHeight + margin) + margin

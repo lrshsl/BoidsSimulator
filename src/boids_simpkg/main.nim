@@ -86,8 +86,14 @@ proc main*() =
     ### Rules ###
     apply_rules(triangles, mainUi, dt)
     evadeEdges(triangles, mainUi)
-
     moveTriangles(triangles, dt)
+
+    ### Update Triangles ###
+    let delta = mainUi.getNumTriangles() - triangles.len
+    if delta > 0:
+      triangles &= generateTriangles(delta, mainUi)
+    elif delta < 0:
+      triangles.setLen(triangles.len + delta)
 
     ### Draw ###
     beginDrawing()
@@ -95,7 +101,7 @@ proc main*() =
     # Clear
     clearBackground(Black)
     # View radius
-    drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, getViewRadius(mainUi), White)
+    drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.getViewRadius, White)
     # Triangles
     drawTriangles(triangles, mainUi)
     # Color the first triangle differently
