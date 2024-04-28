@@ -1,9 +1,30 @@
-import util
-import constants
+import ../util
+import ../constants
 
 import nimraylib_now
 
 import math
+
+type
+  Ui* = ref object
+    widgets*: seq[Widget]
+  WidgetKind* = enum
+    Text,
+    Button,
+    TextField,
+    Slider
+  Widget* = ref object
+    pos*: Vector2
+    size*: Vector2
+    bgColor*, textColor*, borderColor*: Color
+    case kind*: WidgetKind
+    of Text, Button, TextField:
+      text*: string
+    of Slider:
+      name*: string # What value is displayed
+      high*, low*, value*: float
+      showName*, showValue*: bool
+      fillColor*: Color
 
 proc draw*(wg: Widget) =
   let
