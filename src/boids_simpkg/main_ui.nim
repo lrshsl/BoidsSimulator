@@ -20,7 +20,7 @@ const
       # Name, default, min, max
       ("Num Triangles", 600.0, 1.0, 10_000.0),
       ("View Radius", 150.0, 0.0, 600.0),
-      ("Evade Edges", 0.2, 100.0, 500.0),
+      ("Evade Edges", 0.2, 0.0, 1.0),
       ("Min Speed", 250.0, 50.0, 500.0),
       ("Max Speed", 400.0, 50.0, 500.0),
 

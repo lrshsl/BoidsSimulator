@@ -1,9 +1,9 @@
-import boids_simpkg/rules
-import boids_simpkg/ui_functions
-import boids_simpkg/main_ui
-import boids_simpkg/parameters
-import boids_simpkg/constants
-import boids_simpkg/util
+import rules
+import ui_functions
+import main_ui
+import parameters
+import constants
+import util
 
 import nimraylib_now
 

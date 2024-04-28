@@ -43,7 +43,7 @@ proc update*(wg: var Widget) =
   of Slider:
     if x > wg.pos.x and x < wg.pos.x + wg.size.x and
         y > wg.pos.y and y < wg.pos.y + wg.size.y:
-      wg.value = (x - wg.pos.x) / wg.size.x / (wg.high - wg.low)
+      wg.value = (x - wg.pos.x) / wg.size.x * (wg.high - wg.low) + wg.low
 
 proc `draw`*(ui: Ui) =
   for wg in ui.widgets:
