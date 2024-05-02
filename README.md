@@ -1,11 +1,31 @@
 # Boids Simulator in Nim
 
-
 ## Features
 
+- [X] Basic boids simulation
+- [X] Tunable parameters
+  - Somehow tunable
+    - [X] Window dimensions
+    - [ ] Colors
+    - [ ] Settings
+      - [ ] Starting values
+      - [ ] Presets of parameter values
+    - [X] Ui behaviour
+    - [ ] Size of entities
+  - UI with instant reloading
+    - [X] Cohesion, align and separation factors
+    - [X] Number of entities
+    - [X] View radius
+    - [X] Speed (max and min)
+    - [X] Separation from the edges
+- [X] Fancy colors
+- [ ] Optimizations
+
 Current developement focus:
-- [ ] Automatic screen size detection
-  - [ ] Real time scaling
+- Documentation
+- Automatic screen size adaption
+- Option to enable parameter tuning with click
+- Refactor code (comments and architecure)
 
 ## Getting started
 
