@@ -1,6 +1,12 @@
 # Boids Simulator in Nim
 
 
+## Features
+
+Current developement focus:
+- [ ] Automatic screen size detection
+  - [ ] Real time scaling
+
 ## Getting started
 
 ### Binaries / Executables
@@ -9,13 +15,32 @@ Some binaries may be available in the releases. Use on own risk.
 
 ### Build from source
 What needs to be installed:
-- Nim (`nim` and `nimble` need to be available and in the path)
+- Git
+- Nim version 1.6 or higher (primarily developed for 2.0) (`nim` and `nimble` need to be available and in the path)
+  - Recommended to be installed through `choosenim`, but also in the package repos of many distros
 - [nimraylib_now](https://github.com/greenfork/nimraylib_now)
-  - It's a nim package that includes [raylib](https://raylib.com) and Nim bindings
+  - It's a nim package that includes [raylib](https://raylib.com) and nim bindings
   - Can easily be installed through `nimble install nimraylib_now`)
 
 
 #### Linux
+
+Download the source code:
+```sh
+git clone https://github.com/lrshsl/BoidsSimulator --branch hand_in_release
+cd BoidsSimulator
+```
+
+Run using nimble:
+```sh
+nimble run
+```
+
+.. and hope it works!
+
+If the window is too big for the screen, the constants `ScreenWidth` and `ScreenHeight` in the constants.nim file can be adapted accordingly.
+
+##### Troubleshooting
 
 Due to dynamic links in the raylib source code, it may be necessary to get some C x11 headers on your system.
 
@@ -24,10 +49,11 @@ Apt based distros (Debian, Ubuntu and distros based on those):
 sudo apt install libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev
 ```
 
-Pacman:
+Pacman (Arch linux):
 ```sh
 sudo pacman -S alsa-lib mesa libx11 libxrandr libxi libxcursor libxinerama
 ```
+
 
 
 #### Windows
