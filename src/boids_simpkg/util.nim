@@ -8,6 +8,14 @@ type
     pos*: Vector2
     vel*: Vector2
 
+proc drawRectangleLines*(pos: Vector2, size: Vector2, color: Color) =
+  drawRectangleLines(
+      pos.x.int,
+      pos.y.int,
+      size.x.int,
+      size.y.int,
+      color)
+
 func heading*(t: Triangle): float =
   arctan2(t.vel.y, t.vel.x)
 

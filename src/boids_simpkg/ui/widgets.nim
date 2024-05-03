@@ -1,55 +1,11 @@
+from settings import drawSettings
+from types import Ui, Widget, WidgetKind
 import ../util
 import ../constants
 
 import nimraylib_now
 
 import math
-
-type
-  # Ui holds all the widgets and functionality for all of them
-  Ui* = ref object
-    widgets*: seq[Widget]
-
-  # Possible types of single widgets
-  WidgetKind* = enum
-    Text,
-    Button,
-    TextField,
-    Slider
-
-  # Data for a single widget
-  Widget* = ref object
-
-    # Position of top left corner
-    pos*: Vector2
-    # Size of the widget (no margin)
-    size*: Vector2
-
-    # Colors
-    bgColor*, textColor*, borderColor*: Color
-
-    # Some data depends on the type
-    case kind*: WidgetKind
-
-    # .. text only if one of {Text, Button, TextField}
-    of Text, Button, TextField:
-      text*: string
-
-    # Slider needs more data
-    of Slider:
-
-      # What value is displayed
-      name*: string
-
-      # Minimum, maximum, and current value
-      high*, low*, value*: float
-
-      # Flags
-      showName*, showValue*: bool
-
-      # Fill color is also specific to Slider
-      fillColor*: Color
-
 
 # Draw the widget, whatever it is
 proc draw*(wg: Widget) =
@@ -68,7 +24,17 @@ proc draw*(wg: Widget) =
 
   # Text and Buttons only
   of Text, Button:
-    drawText(cstring(wg.text), x, y, 20, wg.textColor)
+    let
+      text = if wg.kind == Button:
+        wg.buttonText.cstring
+      else:
+        wg.text.cstring
+
+      # Measure the text
+      textWidth = measureText(text, fontSize)
+      (_, textHeight) = measureTextEx(getFontDefault(), text, fontSize.cfloat, 0).tuple
+
+    drawText(text, x, y, 20, wg.textColor)
 
   # Text field isn't yet implemented
   of TextField:
@@ -119,6 +85,8 @@ proc update*(wg: var Widget) =
 proc `draw`*(ui: Ui) =
   for wg in ui.widgets:
     wg.draw()
+  if ui.showSettings:
+    ui.drawSettings()
 
 proc `update`*(ui: var Ui) =
   for wg in ui.widgets.mitems:

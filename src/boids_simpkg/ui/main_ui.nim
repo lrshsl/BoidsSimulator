@@ -1,68 +1,24 @@
-import widgets
+from settings import toggleSettings
+from types import Ui, Widget
 import ../constants
 
 import nimraylib_now
 
-import std/sugar
-
-type
-  # Enum over the available Sliders
-  Sliders* {.pure.} = enum
-    NumTriangles
-    ViewRadius
-    EvadeEdges
-    MinSpeed
-    MaxSpeed
-    Separation
-    Alignment
-    Cohesion
-
-  # Values for the sliders
-  SliderInfo = tuple[name: string, start, min, max: float]
-
 # Getter function to retrieve the value of a slider
-proc get*(ui: Ui, s: Sliders): float =
+proc get*[Slider](ui: Ui, s: Slider): float =
   ui.widgets[s.int].value
-
-# Information for the sliders
-const
-  # Put 5 sliders on a row --> Leaves space for additional ui elements
-  numWidgetsPerRow = 5
-
-  # Margin from the edge of the screen
-  margin = 20.0
-  firstRowStart = Vector2(x: margin, y: margin)
-
-  # Colors
-  bgColor = Black
-  textColor = White
-  fillColor = Green
-  borderColor = White
-
-  # Show the name and value of the slider in the format `name: value`
-  showSliderName = true
-  showSliderValue = true
-
-  # Values for the sliders
-  sliderInfo: array[Sliders, SliderInfo] = [
-
-      # Slider:     [name,            start,  min,  max]
-      NumTriangles: ("Num Triangles", 600.0,  1.0,  1_000.0 ),
-      ViewRadius:   ("View Radius",   150.0,  0.0,  600.0   ),
-      EvadeEdges:   ("Evade Edges",   0.2,    0.0,  1.0     ),
-      MinSpeed:     ("Min Speed",     250.0,  50.0, 1000.0  ),
-      MaxSpeed:     ("Max Speed",     400.0,  50.0, 1000.0  ),
-      
-      # Second row
-      Separation:   ("Separation",    50.0,   0.0,  100.0   ),
-      Alignment:    ("Alignment",     22.0,   0.0,  100.0   ),
-      Cohesion:     ("Cohesion",      13.0,   0.0,  100.0   ),
-  ]
 
 # Can only be runtime-evaluated because it needs to know the screen/window size
 let
-  widgetWidth = (ScreenWidth.float - 2 * margin) / numWidgetsPerRow.float
-  widgetHeight = 22.0
+  settings_button = Widget(
+      kind: Button,
+      pos: Vector2(x: ScreenWidth.float - settingsButtonWidth - margin, y: margin),
+      size: Vector2(x: settingsButtonWidth, y: 30.0),
+      bgColor: bgColor,
+      borderColor: borderColor,
+      textColor: textColor,
+      buttonText: "Settings",
+      onClick: toggleSettings)
 
 # Helper function to create a slider with the metadata from the consts above
 proc createDefaultSliderAt(
@@ -85,11 +41,25 @@ proc createDefaultSliderAt(
 
 # Create all the widgets with the inforamtion from `sliderInfo` above
 proc createWidgets(): seq[Widget] =
-  for i, (name, defaultVal, minVal, maxVal) in sliderInfo:
+  # Top row
+  for i, (name, defaultVal, minVal, maxVal) in top_row:
     let
-      x = float(i.int mod numWidgetsPerRow) * widgetWidth + margin
-      y = float(int(i.int / numWidgetsPerRow)) * (widgetHeight + margin) + margin
+      x = margin + float(i.int mod numWidgetsPerRow) * widgetWidth
+      y = margin + float(int(i.int / numWidgetsPerRow)) * (widgetHeight + margin)
     result.add(createDefaultSliderAt(Vector2(x: x, y: y), name, defaultVal, minVal, maxVal))
+
+  # Bottom row
+  for i1, (name, defaultVal, minVal, maxVal) in bottom_row:
+    let
+      i = i1.ord - BottomRow.low.ord
+      widgetWidthBottom = (ScreenWidth.float - 2 * margin) / bottom_row.len.float
+      x = margin + float(i.int mod bottom_row.len) * widgetWidthBottom
+      y = ScreenHeight.float - widgetHeight - margin
+    result.add(createDefaultSliderAt(Vector2(x: x, y: y), name, defaultVal, minVal, maxVal))
+
+  # Settings button
+  result.add(settings_button)
+
 
 # Export a simple, easy to use function
 proc setupMainUi*(): Ui =

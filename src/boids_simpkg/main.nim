@@ -1,6 +1,7 @@
 import rules
-import ui/widgets
 import ui/main_ui
+import ui/widgets
+import ui/types
 import constants
 import util
 
@@ -9,7 +10,6 @@ import nimraylib_now
 import random
 import math
 import system/iterators
-import std/sugar
 
 proc triangleVertices(t: Triangle, ui: Ui): (Vector2, Vector2, Vector2) =
     let (w, h) = triangleSize.tuple
