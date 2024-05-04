@@ -2,6 +2,7 @@ import rules
 import ui/main_ui
 import ui/widgets
 import ui/types
+import ui/settings as settings
 import constants
 import util
 
@@ -103,15 +104,18 @@ proc main*() =
     # Triangles
     drawTriangles(triangles, mainUi)
 
-    # View radius
-    drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ViewRadius), White)
-    # Color the first triangle differently
-    let (a, b, c) = triangleVertices(triangles[0], mainUi)
-    drawTriangle(a, b, c, White)
+    if settings.debugMode:
+      # View radius
+      drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ViewRadius), White)
+
+      # Color the first triangle differently
+      let (a, b, c) = triangleVertices(triangles[0], mainUi)
+      drawTriangle(a, b, c, White)
+
+      drawFPS(margin.int, int(widgetHeight + 2 * margin))
 
     # User interface
     mainUi.draw()
-    drawFPS(10, 10)
 
     endDrawing()
 

@@ -55,6 +55,9 @@ const
   showSliderNameDefault* = true
   showSliderValueDefault* = true
 
+  # Enable debug mode
+  debugModeDefault* = false
+
   # Sliders
   top_row*: array[TopRow, SliderInfo] = [
       # Slider:     [     name,       start,  min,  max     ]
