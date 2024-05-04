@@ -46,6 +46,9 @@ type
       # What value is displayed
       name*: string
 
+      # If already being dragged
+      isBeingChanged*: bool
+
       # Minimum, maximum, and current value
       high*, low*, value*: float
 

@@ -33,8 +33,8 @@ proc createDefaultSliderAt(
          borderColor: borderColor,
          textColor: textColor,
          name: name,
-         showName: showSliderName,
-         showValue: showSliderValue,
+         showName: showSliderNameDefault,
+         showValue: showSliderValueDefault,
          value: defaultValue,
          high: maxValue,
          low: minValue)

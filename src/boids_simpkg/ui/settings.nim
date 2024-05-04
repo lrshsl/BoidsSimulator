@@ -6,9 +6,9 @@ from types import Ui, Widget
 import nimraylib_now
 
 var
-  clicklessUi* = true
-  showSliderName* = true
-  showSliderValue* = true
+  clicklessUi* = clicklessUiDefault
+  showSliderName* = showSliderNameDefault
+  showSliderValue* = showSliderValueDefault
 
 proc toggleClicklessUi(_: Ui) = clicklessUi = not clicklessUi
 

@@ -48,9 +48,12 @@ const
   fillColor* = Green
   borderColor* = White
 
+  # Clickless ui -> update sliders on hover instead of click
+  clicklessUiDefault* = true
+
   # Show the name and value of the slider in the format `name: value`
-  showSliderName* = true
-  showSliderValue* = true
+  showSliderNameDefault* = true
+  showSliderValueDefault* = true
 
   # Sliders
   top_row*: array[TopRow, SliderInfo] = [

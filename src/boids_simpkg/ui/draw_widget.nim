@@ -76,3 +76,4 @@ proc draw*(ui: Ui, wg: Widget) =
              x + int(w / 2) - int(textWidth / 2),
              y + int(h / 2) - int(textHeight / 2),
              fontSize, wg.textColor)
+
