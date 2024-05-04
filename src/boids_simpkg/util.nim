@@ -35,6 +35,9 @@ func headingTowards*(pos: Vector2, target: Vector2): float =
     dy = target.y - pos.y
   arctan2 dy, dx
 
+func withAlpha*(c: Color, alpha: uint8): Color =
+  Color(r: c.r, g: c.g, b: c.b, a: alpha)
+
 func withX*(v: Vector2, x: float): Vector2 =
   Vector2(x: x, y: v.y)
 

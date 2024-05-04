@@ -1,4 +1,3 @@
-
 from nimraylib_now import Vector2, Color
 
 type
@@ -11,6 +10,7 @@ type
   WidgetKind* = enum
     Text,
     Button,
+    ToggleButton,
     TextField,
     Slider
 
@@ -32,11 +32,13 @@ type
     of Text, TextField:
       text*: string
 
-    of Button:
+    of Button, ToggleButton:
       buttonText*: string
+      isBeingClicked*: bool = false
 
-      # Callback for when the button is clicked
+      # Callbacks
       onClick*: proc(ui: Ui)
+      onRelease*: proc(ui: Ui)
 
     # Slider needs more data
     of Slider:

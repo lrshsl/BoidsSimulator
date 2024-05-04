@@ -12,8 +12,8 @@ proc get*[Slider](ui: Ui, s: Slider): float =
 let
   settings_button = Widget(
       kind: Button,
-      pos: Vector2(x: ScreenWidth.float - settingsButtonWidth - margin, y: margin),
-      size: Vector2(x: settingsButtonWidth, y: 30.0),
+      pos: settingsButtonPos,
+      size: settingsButtonSize,
       bgColor: bgColor,
       borderColor: borderColor,
       textColor: textColor,

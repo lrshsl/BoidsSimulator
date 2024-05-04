@@ -71,5 +71,21 @@ const
   widgetWidth* = (ScreenWidth.float - 2 * margin) / numWidgetsPerRow.float
   widgetHeight* = 22.0
 
+  # Settings popup
+  defaultButtonSize* = Vector2(x: 150.0, y: 30.0)
+
   # Settings button
-  settingsButtonWidth* = 150.0
+  settingsButtonSize* = defaultButtonSize
+  settingsButtonPos* = Vector2(
+      x: ScreenWidth.float - settingsButtonSize.x - margin,
+      y: margin)
+
+  # Settings popup
+  popupSize* = Vector2(
+      x: 400,
+      y: ScreenHeight.float * 0.8)
+  popupTopLeft* = Vector2(
+      x: ScreenWidth.float - popupSize.x - margin,
+      y: margin)
+
+
