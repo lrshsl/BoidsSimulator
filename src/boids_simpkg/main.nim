@@ -1,6 +1,8 @@
 import rules
-import ui/widgets
 import ui/main_ui
+import ui/widgets
+import ui/types
+import ui/settings as settings
 import constants
 import util
 
@@ -9,7 +11,8 @@ import nimraylib_now
 import random
 import math
 import system/iterators
-import std/sugar
+from std/strutils import parseInt
+import os as os
 
 proc triangleVertices(t: Triangle, ui: Ui): (Vector2, Vector2, Vector2) =
     let (w, h) = triangleSize.tuple
@@ -24,8 +27,8 @@ proc generateTriangles(ui: Ui, n: int): seq[Triangle] =
       speedRange = ui.get(MinSpeed)..ui.get(MaxSpeed)
       speed = rand(speedRange)
       (w, h) = triangleSize.tuple
-      x = rand(w..(ScreenWidth.float - w))
-      y = rand(h..(ScreenHeight.float - h))
+      x = rand(w..(screenWidth.float - w))
+      y = rand(h..(screenHeight.float - h))
     result.add(Triangle(
       pos: Vector2(x: x, y: y),
       vel: Vector2.fromRad(heading) * speed,
@@ -34,28 +37,6 @@ proc generateTriangles(ui: Ui, n: int): seq[Triangle] =
 func moveTriangles(triangles: var seq[Triangle], dt: float) =
   for t in triangles.mitems:
     t.pos += t.vel * dt
-
-proc evadeEdges(triangles: var seq[Triangle], ui: Ui) =
-  let screen = Rectangle(x: 0.0, y: 0.0,
-                       width: ScreenWidth.float,
-                       height: ScreenHeight.float)
-  for t in triangles.mitems:
-    let
-      vr = ui.get(ViewRadius)
-      f = ui.get(EvadeEdges)
-      distanceLeft = t.pos.x - screen.x
-      distanceRight = screen.x + screen.width - t.pos.x
-      distanceTop = t.pos.y - screen.y
-      distanceBottom = screen.y + screen.height - t.pos.y
-
-    if distanceLeft < vr:
-      t.vel.x += (vr - distanceLeft) * f
-    elif distanceRight < vr:
-      t.vel.x += -(vr - distanceRight) * f
-    elif distanceTop < vr:
-      t.vel.y += (vr - distanceTop) * f
-    elif distanceBottom < vr:
-      t.vel.y += -(vr - distanceBottom) * f
 
 proc drawTriangles(triangles: seq[Triangle], ui: Ui) =
   for t in triangles:
@@ -69,7 +50,17 @@ proc drawTriangles(triangles: seq[Triangle], ui: Ui) =
 func dt(): float = getFrameTime()
 
 proc main*() =
-  initWindow(ScreenWidth, ScreenHeight, "Boids Sim")
+  case os.paramCount()
+  of 0:
+    discard # Use defaults
+  of 2:
+    screenWidth = os.paramStr(1).parseInt
+    screenHeight = os.paramStr(2).parseInt
+  else:
+    echo "usage: boids_sim [screen_width screen_height]"
+    quit(1)
+
+  initWindow(screenWidth, screenHeight, "Boids Sim")
   setTargetFPS(60)
 
   var
@@ -84,7 +75,7 @@ proc main*() =
 
     ### Rules ###
     apply_rules(triangles, mainUi, dt)
-    evadeEdges(triangles, mainUi)
+    avoidEdges(triangles, mainUi)
     moveTriangles(triangles, dt)
 
     ### Update Triangles ###
@@ -103,15 +94,21 @@ proc main*() =
     # Triangles
     drawTriangles(triangles, mainUi)
 
-    # View radius
-    drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ViewRadius), White)
-    # Color the first triangle differently
-    let (a, b, c) = triangleVertices(triangles[0], mainUi)
-    drawTriangle(a, b, c, White)
+    if settings.debugMode:
+      # Protected zone
+      drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ProtectedZone), Gray)
+
+      # View radius
+      drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ViewRadius), White)
+
+      # Color the first triangle differently
+      let (a, b, c) = triangleVertices(triangles[0], mainUi)
+      drawTriangle(a, b, c, White)
+
+      drawFPS(margin.int, int(widgetHeight() + 2 * margin))
 
     # User interface
     mainUi.draw()
-    drawFPS(10, 10)
 
     endDrawing()
 
