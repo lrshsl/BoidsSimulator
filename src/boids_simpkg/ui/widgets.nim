@@ -1,4 +1,4 @@
-from settings import drawSettings, settingsWidgets, clicklessUi, showSliderName, showSliderValue
+from settings import drawSettingsPopup, clicklessUi, showSliderName, showSliderValue
 from draw_widget import draw
 from types import Ui, Widget, WidgetKind
 import ../util
@@ -13,6 +13,7 @@ proc update*(ui: Ui, wg: var Widget) =
     x = getMouseX().float
     y = getMouseY().float
   case wg.kind
+
   of Text, TextField:
     discard
 
@@ -60,7 +61,7 @@ proc draw*(ui: Ui) =
   for wg in ui.widgets:
     ui.draw(wg)
   if ui.showSettings:
-    ui.drawSettings()
+    ui.drawSettingsPopup()
 
 proc update*(ui: var Ui) =
   for wg in ui.widgets.mitems:
@@ -69,6 +70,6 @@ proc update*(ui: var Ui) =
       wg.showName = showSliderName
       wg.showValue = showSliderValue
   if ui.showSettings:
-    for wg in settingsWidgets.mitems:
+    for wg in ui.settingsContent.mitems:
       ui.update(wg)
 

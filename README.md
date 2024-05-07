@@ -30,10 +30,11 @@ Current developement focus:
 ## Getting started
 
 ### Binaries / Executables
+
 Some binaries may be available in the releases. Use on own risk.
 
-
 ### Build from source
+
 What needs to be installed:
 - Git
 - Nim version 1.6 or higher (primarily developed for 2.0) (`nim` and `nimble` need to be available and in the path)
@@ -58,7 +59,10 @@ nimble run
 
 .. and hope it works!
 
-If the window is too big for the screen, the constants `ScreenWidth` and `ScreenHeight` in the constants.nim file can be adapted accordingly.
+The window shouldn't be resized while running. If different window dimensions are needed, the desired dimensions can be passed as arguments to the program.
+```sh
+nimble run -- 1000 800
+```
 
 ##### Troubleshooting
 

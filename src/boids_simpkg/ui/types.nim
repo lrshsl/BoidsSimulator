@@ -5,6 +5,7 @@ type
   Ui* = ref object
     widgets*: seq[Widget]
     showSettings*: bool
+    settingsContent*: seq[Widget]
 
   # Possible types of single widgets
   WidgetKind* = enum

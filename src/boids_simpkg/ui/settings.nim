@@ -21,7 +21,7 @@ proc createDefaultToggleButton(
   Widget(
       kind: ToggleButton,
       pos: pos,
-      size: defaultButtonSize,
+      size: defaultButtonSize(),
       bgColor: bgColor,
       borderColor: borderColor,
       buttonText: name,
@@ -30,59 +30,58 @@ proc createDefaultToggleButton(
       onRelease: callback,
       isBeingClicked: not defaultState)
 
-let
-  debugModeButton = createDefaultToggleButton(
-    "Debug mode",
-    popupTopLeft + Vector2(
-      x: margin,
-      y: margin),
-    debugMode,
-    proc (ui: Ui) = debugMode = not debugMode
-  )
+proc settingsContent*(): seq[Widget] =
+  let
+    debugModeButton = createDefaultToggleButton(
+      "Debug mode",
+      popupTopLeft() + Vector2(
+        x: margin,
+        y: margin),
+      debugMode,
+      proc (ui: Ui) = debugMode = not debugMode
+    )
 
-  clicklessUiButton = createDefaultToggleButton(
-    "Clickless UI",
-    popupTopLeft + Vector2(
-      x: margin,
-      y: margin + (defaultButtonSize.y + margin) * 2),
-    clicklessUi,
-    proc (ui: Ui) = clicklessUi = not clicklessUi
-  )
+    clicklessUiButton = createDefaultToggleButton(
+      "Clickless UI",
+      popupTopLeft() + Vector2(
+        x: margin,
+        y: margin + (defaultButtonSize().y + margin) * 2),
+      clicklessUi,
+      proc (ui: Ui) = clicklessUi = not clicklessUi
+    )
 
-  showSliderNameButton = createDefaultToggleButton(
-    "Slider name",
-    popupTopLeft + Vector2(
-      x: margin,
-      y: margin + (defaultButtonSize.y + margin) * 3),
-    showSliderName,
-    proc (ui: Ui) = showSliderName = not showSliderName
-  )
+    showSliderNameButton = createDefaultToggleButton(
+      "Slider name",
+      popupTopLeft() + Vector2(
+        x: margin,
+        y: margin + (defaultButtonSize().y + margin) * 3),
+      showSliderName,
+      proc (ui: Ui) = showSliderName = not showSliderName
+    )
 
-  showSliderValueButton = createDefaultToggleButton(
-    "Slider value",
-    popupTopLeft + Vector2(
-      x: margin,
-      y: margin + (defaultButtonSize.y + margin) * 4),
-    showSliderValue,
-    proc (ui: Ui) = showSliderValue = not showSliderValue
-  )
+    showSliderValueButton = createDefaultToggleButton(
+      "Slider value",
+      popupTopLeft() + Vector2(
+        x: margin,
+        y: margin + (defaultButtonSize().y + margin) * 4),
+      showSliderValue,
+      proc (ui: Ui) = showSliderValue = not showSliderValue
+    )
 
-var
-  settingsWidgets*: seq[Widget] = @[
-    debugModeButton,
+  return @[debugModeButton,
     clicklessUiButton,
     showSliderNameButton,
     showSliderValueButton]
 
-proc toggleSettings*(ui: Ui) =
+proc toggleSettingsPopup*(ui: Ui) =
   ui.showSettings = not ui.showSettings
 
-proc drawSettings*(ui: Ui) =
+proc drawSettingsPopup*(ui: Ui) =
   drawRectangleLines(
-      popupTopLeft,
-      popupSize,
+      popupTopLeft(),
+      popupSize(),
       borderColor)
-  for wg in settingsWidgets:
+  for wg in ui.settingsContent:
     ui.draw(wg)
 
 proc updateSettings*(ui: Ui) =
