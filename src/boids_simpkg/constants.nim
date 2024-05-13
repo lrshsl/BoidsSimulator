@@ -64,7 +64,7 @@ const
       # Slider:      [     name,        start,  min,  max     ]
       Separation:    ("Separation",     100.0,  0.0,  200.0   ),
       Alignment:     ("Alignment",      22.0,   0.0,  100.0   ),
-      Cohesion:      ("Cohesion",       13.0,   0.0,  100.0   ),
+      Cohesion:      ("Cohesion",       0.1,   0.0,  100.0   ),
       ProtectedZone: ("Protected Zone", 70.0,   0.0,  200.0   ),
   ]
   bottom_row*: array[BottomRow, SliderInfo] = [

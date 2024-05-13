@@ -49,6 +49,14 @@ proc drawTriangles(triangles: seq[Triangle], ui: Ui) =
 
 func dt(): float = getFrameTime()
 
+proc localCOM(ui: Ui, triangles: seq[Triangle], t1: Triangle): Vector2 =
+  var n = 0
+  for t in triangles:
+    if distance(t.pos, t1.pos) > ui.get(ViewRadius):
+      n += 1
+      result += t.pos
+  return result.scale(1.0 / n.float)
+
 proc main*() =
   case os.paramCount()
   of 0:
@@ -104,6 +112,9 @@ proc main*() =
       # Color the first triangle differently
       let (a, b, c) = triangleVertices(triangles[0], mainUi)
       drawTriangle(a, b, c, White)
+
+      let centerOfMass = mainUI.localCOM(triangles, triangles[0])
+      drawCircleLines(centerOfMass.x.int, centerOfMass.y.int, 5, Red)
 
       drawFPS(margin.int, int(widgetHeight() + 2 * margin))
 

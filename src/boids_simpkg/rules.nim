@@ -34,6 +34,13 @@ proc apply_rules*(boids: var seq[Triangle], ui: Ui, dt: float) =
 
   for t in boids.mitems:
 
+    var
+      inView = 0
+
+      avgPos = Vector2()
+      avgVel = Vector2()
+      separationForce = Vector2()
+
     for other in boids:
 
       # Don't include itself
@@ -41,24 +48,34 @@ proc apply_rules*(boids: var seq[Triangle], ui: Ui, dt: float) =
 
       # Only then calculate the distance
       let
-        d = distance(t.pos, other.pos)
+        v = other.pos - t.pos
+        d = v.length
 
-        # TODO: Use fast inverse sqrt?
-        strength = 1.0 / d
-
-      # Only look at the boids within the view radius
       # TODO: restrict view by an angle
       if d < ui.get(ViewRadius):
+        inView += 1
 
         # Cohesion
-        t.vel += (other.pos - t.pos) * strength * ui.get(Cohesion) * dt
-        t.vel = t.vel.clampValue(minSpeed, maxSpeed)
+        avgPos += v.normalize
 
         # Alignment
-        t.vel += (other.vel - t.vel) * strength * ui.get(Alignment) * dt
-        t.vel = t.vel.clampValue(minSpeed, maxSpeed)
+        avgVel += other.vel - t.vel
 
       if d < ui.get(ProtectedZone):
+
         # Separation
-        t.vel += (t.pos - other.pos) * strength * ui.get(Separation) * dt
-        t.vel = t.vel.clampValue(minSpeed, maxSpeed)
+        separationForce += -v.normalize * ui.get(Separation) * dt
+    
+    var
+      cohesionForce = avgPos * ui.get(Cohesion)
+      alignmentForce = avgVel.scale(1.0 / inView.float) * ui.get(Alignment)
+
+    separationForce *= ui.get(Separation)
+
+    t.vel += (cohesionForce + alignmentForce + separationForce) * dt
+    t.vel = t.vel.clampValue(minSpeed, maxSpeed)
+
+
+
+
+
