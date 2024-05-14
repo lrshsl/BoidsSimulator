@@ -7,7 +7,7 @@
 
 ## Docs
 
-Docs are available at [docs/](docs/boids_sim.html).
+Docs are available at [docs/](lrshsl.github.io/BoidsSimulator).
 
 
 ## Getting started
@@ -20,7 +20,7 @@ Some binaries may be available in the releases. Use at own risk.
 
 What needs to be installed:
 - Git
-- Nim version 1.6 or higher (primarily developed for 2.0) (`nim` and `nimble` need to be available and in the path)
+- [Nim](https://nim-lang.org/) version 1.6 or higher (primarily developed for 2.0) (`nim` and `nimble` need to be available and in the path)
   - Recommended to be installed through `choosenim`, but also in the package repos of many distros
 - [nimraylib_now](https://github.com/greenfork/nimraylib_now)
   - It's a nim package that includes [raylib](https://raylib.com) and nim bindings
