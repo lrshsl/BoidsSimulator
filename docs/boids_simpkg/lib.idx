@@ -1,0 +1,2 @@
+nimTitle	lib	boids_simpkg/lib.html	module src/boids_simpkg/lib		0
+nim	run	boids_simpkg/lib.html#run,Vector2	proc run(screenSize: Vector2)		61

@@ -10,7 +10,6 @@
     - [ ] Settings
       - [ ] Starting values
       - [ ] Presets of parameter values
-    - [X] Ui behaviour
     - [ ] Size of entities
   - UI with instant reloading
     - [X] Cohesion, align and separation factors
@@ -18,20 +17,20 @@
     - [X] View radius
     - [X] Speed (max and min)
     - [X] Separation from the edges
+    - [X] Ui behaviour
 - [X] Fancy colors
 - [ ] Optimizations
 
 Current developement focus:
 - Documentation
 - Automatic screen size adaption
-- Option to enable parameter tuning with click
 - Refactor code (comments and architecure)
 
 ## Getting started
 
 ### Binaries / Executables
 
-Some binaries may be available in the releases. Use on own risk.
+Some binaries may be available in the releases. Use at own risk.
 
 ### Build from source
 

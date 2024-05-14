@@ -1,3 +1,6 @@
+## Main module of the library.
+## This file contains the `run` procedure and related functions.
+
 import rules
 import ui/main_ui
 import ui/widgets
@@ -11,8 +14,6 @@ import nimraylib_now
 import random
 import math
 import system/iterators
-from std/strutils import parseInt
-import os as os
 
 proc triangleVertices(t: Triangle, ui: Ui): (Vector2, Vector2, Vector2) =
     let (w, h) = triangleSize.tuple
@@ -57,16 +58,9 @@ proc localCOM(ui: Ui, triangles: seq[Triangle], t1: Triangle): Vector2 =
       result += t.pos
   return result.scale(1.0 / n.float)
 
-proc main*() =
-  case os.paramCount()
-  of 0:
-    discard # Use defaults
-  of 2:
-    screenWidth = os.paramStr(1).parseInt
-    screenHeight = os.paramStr(2).parseInt
-  else:
-    echo "usage: boids_sim [screen_width screen_height]"
-    quit(1)
+proc run*(screenSize: Vector2) =
+  ## Initizalize the window, setup variables and run the main loop.
+  ## This procedure only returns when the window is closed.
 
   initWindow(screenWidth, screenHeight, "Boids Sim")
   setTargetFPS(60)
@@ -83,7 +77,6 @@ proc main*() =
 
     ### Rules ###
     apply_rules(triangles, mainUi, dt)
-    avoidEdges(triangles, mainUi)
     moveTriangles(triangles, dt)
 
     ### Update Triangles ###

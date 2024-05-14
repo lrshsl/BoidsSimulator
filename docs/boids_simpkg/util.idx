@@ -1,0 +1,11 @@
+nimTitle	util	boids_simpkg/util.html	module src/boids_simpkg/util		0
+nim	Triangle	boids_simpkg/util.html#Triangle	object Triangle		7
+nim	drawRectangleLines	boids_simpkg/util.html#drawRectangleLines,Vector2,Vector2,Color	proc drawRectangleLines(pos: Vector2; size: Vector2; color: Color)		11
+nim	heading	boids_simpkg/util.html#heading,Triangle	proc heading(t: Triangle): float		19
+nim	`tuple`	boids_simpkg/util.html#tuple,Vector2	proc `tuple`(v: Vector2): (float, float)		23
+nim	ints	boids_simpkg/util.html#ints,Vector2	proc ints(v: Vector2): (int, int)		28
+nim	fromRad	boids_simpkg/util.html#fromRad,typedesc[Vector2],float	proc fromRad(_: typedesc[Vector2]; radians: float): Vector2		31
+nim	headingTowards	boids_simpkg/util.html#headingTowards,Vector2,Vector2	proc headingTowards(pos: Vector2; target: Vector2): float		34
+nim	withAlpha	boids_simpkg/util.html#withAlpha,Color,uint8	proc withAlpha(c: Color; alpha: uint8): Color		40
+nim	withX	boids_simpkg/util.html#withX,Vector2,float	proc withX(v: Vector2; x: float): Vector2		43
+nim	withY	boids_simpkg/util.html#withY,Vector2,float	proc withY(v: Vector2; y: float): Vector2		46

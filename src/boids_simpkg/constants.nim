@@ -62,9 +62,9 @@ const
   # Sliders
   top_row*: array[TopRow, SliderInfo] = [
       # Slider:      [     name,        start,  min,  max     ]
-      Separation:    ("Separation",     100.0,  0.0,  200.0   ),
-      Alignment:     ("Alignment",      22.0,   0.0,  100.0   ),
-      Cohesion:      ("Cohesion",       0.1,   0.0,  100.0   ),
+      Separation:    ("Separation",     0.5,    0.0,  1.0     ),
+      Alignment:     ("Alignment",      0.5,    0.0,  1.0     ),
+      Cohesion:      ("Cohesion",       0.5,    0.0,  1.0     ),
       ProtectedZone: ("Protected Zone", 70.0,   0.0,  200.0   ),
   ]
   bottom_row*: array[BottomRow, SliderInfo] = [
@@ -76,7 +76,7 @@ const
       MaxSpeed:      ("Max Speed",      400.0,  50.0, 1000.0  ),
   ]
 
-# Can't be evaluated at compile time bc of the `screenWidth` and `screenHeight` variables
+# The following values can't be evaluated at compile time bc of the `screenWidth` and `screenHeight` variables
 
 # Default widget size
 proc widgetHeight*(): float = 22.0

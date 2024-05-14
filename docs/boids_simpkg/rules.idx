@@ -1,0 +1,7 @@
+nimTitle	rules	boids_simpkg/rules.html	module src/boids_simpkg/rules		0
+nim	avoidEdges	boids_simpkg/rules.html#avoidEdges,seq[Triangle],Ui	proc avoidEdges(triangles: var seq[Triangle]; ui: Ui)		25
+nim	apply_rules	boids_simpkg/rules.html#apply_rules,seq[Triangle],Ui,float	proc apply_rules(boids: var seq[Triangle]; ui: Ui; dt: float)		47
+heading	Cohesion	boids_simpkg/rules.html#cohesion	   Cohesion		0
+heading	Separation	boids_simpkg/rules.html#separation	   Separation		0
+heading	Alignment	boids_simpkg/rules.html#alignment	   Alignment		0
+heading	Avoid edges	boids_simpkg/rules.html#avoid-edges	   Avoid edges		0

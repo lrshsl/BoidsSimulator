@@ -1,0 +1,3 @@
+nimTitle	main_ui	boids_simpkg/ui/main_ui.html	module src/boids_simpkg/ui/main_ui		0
+nim	get	boids_simpkg/ui/main_ui.html#get,Ui,Slider	proc get[Slider](ui: Ui; s: Slider): float		8
+nim	setupMainUi	boids_simpkg/ui/main_ui.html#setupMainUi	proc setupMainUi(): Ui		68
