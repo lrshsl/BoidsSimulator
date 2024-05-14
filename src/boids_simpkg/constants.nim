@@ -59,6 +59,9 @@ const
   # Enable debug mode
   debugModeDefault* = false ## Toggle debug mode. Draws the view radius, protected zone and center of mass of one bird and enables the visualization of other debug values
 
+  # Picture mode
+  pictureModeDefault* = false ## Toggle picture mode alias "Hide All". Hides all widgets. Can be reactivated on mouse click
+
   # Sliders
   top_row*: array[TopRow, SliderInfo] = [
       ## The sliders that are placed in the top row (Separation, Alignment, Cohesion, Protected Zone)

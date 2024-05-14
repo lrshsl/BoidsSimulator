@@ -78,10 +78,6 @@
   <li><a class="reference" href="#toggleSettingsPopup%2CUi" title="toggleSettingsPopup(ui: Ui)">toggleSettingsPopup(ui: Ui)</a></li>
 
 </ul>
-<ul class="simple nested-toc-section">updateSettings
-  <li><a class="reference" href="#updateSettings%2CUi" title="updateSettings(ui: Ui)">updateSettings(ui: Ui)</a></li>
-
-</ul>
 
     </ul>
   </details>
@@ -147,7 +143,7 @@
   <dt><pre><span class="Keyword">proc</span> <a href="#drawSettingsPopup%2CUi"><span class="Identifier">drawSettingsPopup</span></a><span class="Other">(</span><span class="Identifier">ui</span><span class="Other">:</span> <a href="types.html#Ui"><span class="Identifier">Ui</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    
+    Draw the settings popup. Should only be called if <tt class="docutils literal"><span class="pre"><span class="Identifier">ui</span><span class="Operator">.</span><span class="Identifier">showSettings</span></span></tt> is true
     
   </dd>
 </div>
@@ -158,7 +154,7 @@
   <dt><pre><span class="Keyword">proc</span> <a href="#settingsContent"><span class="Identifier">settingsContent</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="types.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    
+    Create all the widgets for the settings popup
     
   </dd>
 </div>
@@ -169,18 +165,7 @@
   <dt><pre><span class="Keyword">proc</span> <a href="#toggleSettingsPopup%2CUi"><span class="Identifier">toggleSettingsPopup</span></a><span class="Other">(</span><span class="Identifier">ui</span><span class="Other">:</span> <a href="types.html#Ui"><span class="Identifier">Ui</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    
-    
-  </dd>
-</div>
-
-</div>
-<div id="updateSettings-procs-all">
-  <div id="updateSettings,Ui">
-  <dt><pre><span class="Keyword">proc</span> <a href="#updateSettings%2CUi"><span class="Identifier">updateSettings</span></a><span class="Other">(</span><span class="Identifier">ui</span><span class="Other">:</span> <a href="types.html#Ui"><span class="Identifier">Ui</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-  <dd>
-    
-    
+    Open and close the settings popup
     
   </dd>
 </div>
@@ -196,7 +181,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-05-14 18:37:34 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-05-14 20:00:46 UTC</small>
       </div>
     </div>
   </div>

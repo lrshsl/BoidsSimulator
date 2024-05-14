@@ -74,6 +74,8 @@ proc run*(screenSize: Vector2) =
 
     ### Input ###
     mainUi.update()
+    if settings.pictureMode and isMouseButtonPressed(MouseButton.Left):
+      settings.pictureMode = false
 
     ### Rules ###
     apply_rules(triangles, mainUi, dt)
@@ -95,7 +97,12 @@ proc run*(screenSize: Vector2) =
     # Triangles
     drawTriangles(triangles, mainUi)
 
-    if settings.debugMode:
+    if settings.debugMode and not settings.pictureMode:
+      let vr = mainUi.get(ViewRadius).int
+
+      # Borders
+      drawRectangleLines(vr, vr, screenWidth - 2*vr, screenHeight - 2*vr, Gray)
+
       # Protected zone
       drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ProtectedZone), Gray)
 
@@ -112,7 +119,8 @@ proc run*(screenSize: Vector2) =
       drawFPS(margin.int, int(widgetHeight() + 2 * margin))
 
     # User interface
-    mainUi.draw()
+    if not settings.pictureMode:
+      mainUi.draw()
 
     endDrawing()
 

@@ -6,6 +6,7 @@ import nimraylib_now
 
 # Getter function to retrieve the value of a slider
 proc get*[Slider](ui: Ui, s: Slider): float =
+  ## Get the value of a slider. Takes a Slider enum and the main ui as arguments.
   ui.widgets[s.int].value
 
 # Can only be runtime-evaluated because it needs to know the screen/window size
@@ -66,6 +67,7 @@ proc createWidgets(): seq[Widget] =
 
 # Export a simple, easy to use function
 proc setupMainUi*(): Ui =
+  ## Create the main ui. Is called once before the game loop. It initializes all the widgets and settings.
   Ui(widgets: createWidgets(), settingsContent: settingsContent())
   
 

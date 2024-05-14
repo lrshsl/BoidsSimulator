@@ -5,6 +5,8 @@ from types import Ui, Widget, WidgetKind
 import nimraylib_now
 
 proc update*(ui: Ui, wg: var Widget) =
+  ## Update the widget. Is called every frame. This is where click and hover events are registered and handled.
+
   let
     x = getMouseX().float
     y = getMouseY().float
@@ -54,12 +56,14 @@ proc update*(ui: Ui, wg: var Widget) =
       wg.isBeingChanged = false
 
 proc draw*(ui: Ui) =
+  ## Draw all widgets. Is called every frame.
   for wg in ui.widgets:
     ui.draw(wg)
   if ui.showSettings:
     ui.drawSettingsPopup()
 
 proc update*(ui: var Ui) =
+  ## Update all widgets. Is called every frame.
   for wg in ui.widgets.mitems:
     ui.update(wg)
     if wg.kind == Slider:
