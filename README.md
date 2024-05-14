@@ -1,17 +1,15 @@
 # Boids Simulator in Nim
 
 ## Table of Contents  
-[Docs](#docs)
-[Getting started](#getting-started)
-[Features](#features)
+- [Docs](#docs)
+- [Getting started](#getting-started)
+- [Features](#features)
 
-<a name="docs">
 ## Docs
 
 Docs are available at [docs/](docs/boids_sim.html).
 
 
-<a name="getting-started">
 ## Getting started
 
 ### Binaries / Executables
@@ -80,7 +78,6 @@ Else consult the [raylib docs](https://github.com/raysan5/raylib?tab=readme-ov-f
 5. See chapter Linux ;)
 
 
-<a name="features">
 ## Features
 
 - [X] Basic boids simulation
