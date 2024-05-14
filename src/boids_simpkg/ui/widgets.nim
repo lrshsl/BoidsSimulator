@@ -1,12 +1,8 @@
 from settings import drawSettingsPopup, clicklessUi, showSliderName, showSliderValue
 from draw_widget import draw
 from types import Ui, Widget, WidgetKind
-import ../util
-import ../constants
 
 import nimraylib_now
-
-import math
 
 proc update*(ui: Ui, wg: var Widget) =
   let

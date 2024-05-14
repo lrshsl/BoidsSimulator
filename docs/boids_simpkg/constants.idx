@@ -11,8 +11,8 @@ nim	TopRow	boids_simpkg/constants.html#TopRow	enum TopRow		25
 nim	BottomRow	boids_simpkg/constants.html#BottomRow	enum BottomRow		31
 nim	SliderInfo	boids_simpkg/constants.html#SliderInfo	tuple SliderInfo		39
 nim	fontSize	boids_simpkg/constants.html#fontSize	const fontSize		44
-nim	bgColor	boids_simpkg/constants.html#bgColor	const bgColor		47
-nim	textColor	boids_simpkg/constants.html#textColor	const textColor		48
+nim	textColor	boids_simpkg/constants.html#textColor	const textColor		47
+nim	bgColor	boids_simpkg/constants.html#bgColor	const bgColor		48
 nim	fillColor	boids_simpkg/constants.html#fillColor	const fillColor		49
 nim	borderColor	boids_simpkg/constants.html#borderColor	const borderColor		50
 nim	clicklessUiDefault	boids_simpkg/constants.html#clicklessUiDefault	const clicklessUiDefault		53
@@ -20,12 +20,12 @@ nim	showSliderNameDefault	boids_simpkg/constants.html#showSliderNameDefault	cons
 nim	showSliderValueDefault	boids_simpkg/constants.html#showSliderValueDefault	const showSliderValueDefault		57
 nim	debugModeDefault	boids_simpkg/constants.html#debugModeDefault	const debugModeDefault		60
 nim	top_row	boids_simpkg/constants.html#top_row	const top_row		63
-nim	bottom_row	boids_simpkg/constants.html#bottom_row	const bottom_row		70
-nim	widgetHeight	boids_simpkg/constants.html#widgetHeight	proc widgetHeight(): float		82
-nim	widgetWidth	boids_simpkg/constants.html#widgetWidth	proc widgetWidth(): float		84
-nim	defaultButtonSize	boids_simpkg/constants.html#defaultButtonSize	proc defaultButtonSize(): Vector2		88
-nim	settingsButtonSize	boids_simpkg/constants.html#settingsButtonSize	proc settingsButtonSize(): Vector2		91
-nim	settingsButtonPos	boids_simpkg/constants.html#settingsButtonPos	proc settingsButtonPos(): Vector2		93
-nim	popupSize	boids_simpkg/constants.html#popupSize	proc popupSize(): Vector2		98
-nim	popupTopLeft	boids_simpkg/constants.html#popupTopLeft	proc popupTopLeft(): Vector2		102
+nim	bottom_row	boids_simpkg/constants.html#bottom_row	const bottom_row		71
+nim	widgetHeight	boids_simpkg/constants.html#widgetHeight	proc widgetHeight(): float		83
+nim	widgetWidth	boids_simpkg/constants.html#widgetWidth	proc widgetWidth(): float		87
+nim	defaultButtonSize	boids_simpkg/constants.html#defaultButtonSize	proc defaultButtonSize(): Vector2		94
+nim	settingsButtonSize	boids_simpkg/constants.html#settingsButtonSize	proc settingsButtonSize(): Vector2		98
+nim	settingsButtonPos	boids_simpkg/constants.html#settingsButtonPos	proc settingsButtonPos(): Vector2		101
+nim	popupSize	boids_simpkg/constants.html#popupSize	proc popupSize(): Vector2		106
+nim	popupTopLeft	boids_simpkg/constants.html#popupTopLeft	proc popupTopLeft(): Vector2		110
 heading	Information for the ui elements ###	boids_simpkg/constants.html#information-for-the-ui-elements	 Information for the ui elements ###		0

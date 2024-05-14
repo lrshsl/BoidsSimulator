@@ -92,9 +92,9 @@
 <li><a class="reference" href="#showSliderNameDefault" title="showSliderNameDefault = true">showSliderNameDefault</a></li>
 <li><a class="reference" href="#showSliderValueDefault" title="showSliderValueDefault = true">showSliderValueDefault</a></li>
 <li><a class="reference" href="#textColor" title="textColor = (r: 255'u, g: 255'u, b: 255'u, a: 255'u)">textColor</a></li>
-<li><a class="reference" href="#top_row" title="top_row: array[TopRow, SliderInfo] = [(&quot;Separation&quot;, 100.0, 0.0, 200.0),
-                                      (&quot;Alignment&quot;, 22.0, 0.0, 100.0),
-                                      (&quot;Cohesion&quot;, 0.1, 0.0, 1.0),
+<li><a class="reference" href="#top_row" title="top_row: array[TopRow, SliderInfo] = [(&quot;Separation&quot;, 0.5, 0.0, 1.0),
+                                      (&quot;Alignment&quot;, 0.5, 0.0, 1.0),
+                                      (&quot;Cohesion&quot;, 0.5, 0.0, 1.0),
                                       (&quot;Protected Zone&quot;, 70.0, 0.0, 200.0)]">top_row</a></li>
 <li><a class="reference" href="#triangleSize" title="triangleSize = (x: 12.0, y: 25.0)">triangleSize</a></li>
 <li><a class="reference" href="#Up" title="Up = (x: 0.0, y: -1.0)">Up</a></li>
@@ -209,7 +209,7 @@
   <dt><pre><a href="constants.html#bgColor"><span class="Identifier">bgColor</span></a> <span class="Other">=</span> <span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <span class="DecNumber">0'u</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="DecNumber">0'u</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="DecNumber">0'u</span><span class="Other">,</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">)</span></pre></dt>
   <dd>
     
-    
+    Background color of all widgets
     
   </dd>
 </div>
@@ -217,7 +217,7 @@
   <dt><pre><a href="constants.html#borderColor"><span class="Identifier">borderColor</span></a> <span class="Other">=</span> <span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">,</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">)</span></pre></dt>
   <dd>
     
-    
+    Border color of widgets with borders
     
   </dd>
 </div>
@@ -236,7 +236,7 @@
   <dt><pre><a href="constants.html#clicklessUiDefault"><span class="Identifier">clicklessUiDefault</span></a> <span class="Other">=</span> <span class="DecNumber">true</span></pre></dt>
   <dd>
     
-    
+    Toggle clickless UI. If on, sliders will be updated on hover
     
   </dd>
 </div>
@@ -244,7 +244,7 @@
   <dt><pre><a href="constants.html#debugModeDefault"><span class="Identifier">debugModeDefault</span></a> <span class="Other">=</span> <span class="DecNumber">false</span></pre></dt>
   <dd>
     
-    
+    Toggle debug mode. Draws the view radius, protected zone and center of mass of one bird and enables the visualization of other debug values
     
   </dd>
 </div>
@@ -260,7 +260,7 @@
   <dt><pre><a href="constants.html#fillColor"><span class="Identifier">fillColor</span></a> <span class="Other">=</span> <span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <span class="DecNumber">0'u</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="DecNumber">228'u</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="DecNumber">48'u</span><span class="Other">,</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">)</span></pre></dt>
   <dd>
     
-    
+    Fill color. Used in sliders only for the movable part
     
   </dd>
 </div>
@@ -268,7 +268,7 @@
   <dt><pre><a href="constants.html#fontSize"><span class="Identifier">fontSize</span></a> <span class="Other">=</span> <span class="DecNumber">18</span></pre></dt>
   <dd>
     
-    
+    Default font size in pixels
     
   </dd>
 </div>
@@ -300,7 +300,7 @@
   <dt><pre><a href="constants.html#showSliderNameDefault"><span class="Identifier">showSliderNameDefault</span></a> <span class="Other">=</span> <span class="DecNumber">true</span></pre></dt>
   <dd>
     
-    
+    Show the name of the sliders (&quot;cohesion&quot;, &quot;num triangles&quot;, etc.)
     
   </dd>
 </div>
@@ -308,7 +308,7 @@
   <dt><pre><a href="constants.html#showSliderValueDefault"><span class="Identifier">showSliderValueDefault</span></a> <span class="Other">=</span> <span class="DecNumber">true</span></pre></dt>
   <dd>
     
-    
+    Show the value of the sliders. If both name and value are on, it will be shown in the format <tt class="docutils literal"><span class="pre"><span class="Identifier">name</span><span class="Punctuation">:</span> <span class="Identifier">value</span></span></tt>
     
   </dd>
 </div>
@@ -316,14 +316,14 @@
   <dt><pre><a href="constants.html#textColor"><span class="Identifier">textColor</span></a> <span class="Other">=</span> <span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">,</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="DecNumber">255'u</span><span class="Other">)</span></pre></dt>
   <dd>
     
-    
+    Text color of all text
     
   </dd>
 </div>
 <div id="top_row">
-  <dt><pre><a href="constants.html#top_row"><span class="Identifier">top_row</span></a><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">TopRow</span><span class="Other">,</span> <a href="constants.html#SliderInfo"><span class="Identifier">SliderInfo</span></a><span class="Other">]</span> <span class="Other">=</span> <span class="Other">[</span><span class="Other">(</span><span class="StringLit">&quot;Separation&quot;</span><span class="Other">,</span> <span class="FloatNumber">100.0</span><span class="Other">,</span> <span class="FloatNumber">0.0</span><span class="Other">,</span> <span class="FloatNumber">200.0</span><span class="Other">)</span><span class="Other">,</span>
-                                      <span class="Other">(</span><span class="StringLit">&quot;Alignment&quot;</span><span class="Other">,</span> <span class="FloatNumber">22.0</span><span class="Other">,</span> <span class="FloatNumber">0.0</span><span class="Other">,</span> <span class="FloatNumber">100.0</span><span class="Other">)</span><span class="Other">,</span>
-                                      <span class="Other">(</span><span class="StringLit">&quot;Cohesion&quot;</span><span class="Other">,</span> <span class="FloatNumber">0.1</span><span class="Other">,</span> <span class="FloatNumber">0.0</span><span class="Other">,</span> <span class="FloatNumber">1.0</span><span class="Other">)</span><span class="Other">,</span>
+  <dt><pre><a href="constants.html#top_row"><span class="Identifier">top_row</span></a><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">TopRow</span><span class="Other">,</span> <a href="constants.html#SliderInfo"><span class="Identifier">SliderInfo</span></a><span class="Other">]</span> <span class="Other">=</span> <span class="Other">[</span><span class="Other">(</span><span class="StringLit">&quot;Separation&quot;</span><span class="Other">,</span> <span class="FloatNumber">0.5</span><span class="Other">,</span> <span class="FloatNumber">0.0</span><span class="Other">,</span> <span class="FloatNumber">1.0</span><span class="Other">)</span><span class="Other">,</span>
+                                      <span class="Other">(</span><span class="StringLit">&quot;Alignment&quot;</span><span class="Other">,</span> <span class="FloatNumber">0.5</span><span class="Other">,</span> <span class="FloatNumber">0.0</span><span class="Other">,</span> <span class="FloatNumber">1.0</span><span class="Other">)</span><span class="Other">,</span>
+                                      <span class="Other">(</span><span class="StringLit">&quot;Cohesion&quot;</span><span class="Other">,</span> <span class="FloatNumber">0.5</span><span class="Other">,</span> <span class="FloatNumber">0.0</span><span class="Other">,</span> <span class="FloatNumber">1.0</span><span class="Other">)</span><span class="Other">,</span>
                                       <span class="Other">(</span><span class="StringLit">&quot;Protected Zone&quot;</span><span class="Other">,</span> <span class="FloatNumber">70.0</span><span class="Other">,</span> <span class="FloatNumber">0.0</span><span class="Other">,</span> <span class="FloatNumber">200.0</span><span class="Other">)</span><span class="Other">]</span></pre></dt>
   <dd>
     
@@ -413,7 +413,7 @@
   <dt><pre><span class="Keyword">proc</span> <a href="#widgetHeight"><span class="Identifier">widgetHeight</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    
+    Current widget width
     
   </dd>
 </div>
@@ -424,7 +424,7 @@
   <dt><pre><span class="Keyword">proc</span> <a href="#widgetWidth"><span class="Identifier">widgetWidth</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    
+    Current widget height (relative to screen width)
     
   </dd>
 </div>
@@ -440,7 +440,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-05-14 17:07:00 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-05-14 18:37:34 UTC</small>
       </div>
     </div>
   </div>

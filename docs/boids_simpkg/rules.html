@@ -62,10 +62,6 @@
   <li><a class="reference" href="#apply_rules%2Cseq%5BTriangle%5D%2CUi%2Cfloat" title="apply_rules(boids: var seq[Triangle]; ui: Ui; dt: float)">apply_rules(boids: var seq[Triangle]; ui: Ui; dt: float)</a></li>
 
 </ul>
-<ul class="simple nested-toc-section">avoidEdges
-  <li><a class="reference" href="#avoidEdges%2Cseq%5BTriangle%5D%2CUi" title="avoidEdges(triangles: var seq[Triangle]; ui: Ui)">avoidEdges(triangles: var seq[Triangle]; ui: Ui)</a></li>
-
-</ul>
 
     </ul>
   </details>
@@ -79,13 +75,14 @@
     <div id="tocRoot"></div>
     
     <p class="module-desc">This module defines the rules for the behaviour of the single boids.
-<h3><a class="toc-backref" id="cohesion" href="#cohesion">Cohesion</a></h3><p>Cohesion makes the birds wanting to move together, towards the center of mass of the boids in its field of view.</p>
+<h3><a class="toc-backref" id="cohesion" href="#cohesion">Cohesion</a></h3><p>Cohesion makes the boids wanting to move together, towards the center of mass of the boids in its field of view. Through cohesion, boids want to get closer together. This - with the help of the other rules - results in the typical flocking behaviour similar to birds and fish.</p>
 
 <h3><a class="toc-backref" id="separation" href="#separation">Separation</a></h3><p>Separation is the opposite force to cohesion. It makes sure that the boids don't just fly into each other. This is accomplished by a contrary force which increases as two boids come closer to each other. It only activates if the boids enter each other's protected zone. The protected zone is a subzone of the field of view, in which the boids don't want other boids to be in.</p>
 
 <h3><a class="toc-backref" id="alignment" href="#alignment">Alignment</a></h3><p>Alignment is the last essential force. It makes the boids want to move in the same direction as the other boids. This also activates for all the boids in the field of view.</p>
 
-<h3><a class="toc-backref" id="avoid-edges" href="#avoid-edges">Avoid edges</a></h3></p>
+<h3><a class="toc-backref" id="avoid-edges" href="#avoid-edges">Avoid edges</a></h3><p>Since the simulated boids shouldn't fly off the edges of the screen, they have to avoid edges somehow. I first implemented this by a simple bouncing-off the edges, but since this happends very often, it resulted in very unnatural behaviour of the boids. Now a separate rule in the &quot;AI&quot; of the boids tries to steer away from the screen edges as soon as they enter the field of view.</p>
+</p>
     <div class="section" id="6">
   <h1><a class="toc-backref" href="#6">Imports</a></h1>
   <dl class="item">
@@ -101,19 +98,7 @@
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    
-    
-  </dd>
-</div>
-
-</div>
-<div id="avoidEdges-procs-all">
-  <div id="avoidEdges,seq[Triangle],Ui">
-  <dt><pre><span class="Keyword">proc</span> <a href="#avoidEdges%2Cseq%5BTriangle%5D%2CUi"><span class="Identifier">avoidEdges</span></a><span class="Other">(</span><span class="Identifier">triangles</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="util.html#Triangle"><span class="Identifier">Triangle</span></a><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">ui</span><span class="Other">:</span> <a href="ui/types.html#Ui"><span class="Identifier">Ui</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-  <dd>
-    
-    
+    This function applies all rules to each boid in <tt class="docutils literal"><span class="pre"><span class="Identifier">boids</span></span></tt>. It has been combined into a single function in order to increase performance by only looping over the boids once.
     
   </dd>
 </div>
@@ -129,7 +114,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-05-14 17:07:00 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-05-14 18:37:34 UTC</small>
       </div>
     </div>
   </div>

@@ -5,8 +5,6 @@ from types import Ui, Widget
 
 import nimraylib_now
 
-import sugar
-
 var
   clicklessUi* = clicklessUiDefault
   showSliderName* = showSliderNameDefault

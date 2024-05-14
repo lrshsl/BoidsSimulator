@@ -14,6 +14,8 @@ from std/strutils import parseInt
 
 proc main*() =
   ## The main entry point of the program
+  ## Responsible for environment setup (e.g. command line arguments) and initiating of the main loop
+  ## Never returns
 
   # Parse the command line arguments
   case os.paramCount()
