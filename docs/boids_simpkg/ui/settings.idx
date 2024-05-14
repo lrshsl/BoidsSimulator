@@ -3,6 +3,7 @@ nim	clicklessUi	boids_simpkg/ui/settings.html#clicklessUi	var clicklessUi		10
 nim	showSliderName	boids_simpkg/ui/settings.html#showSliderName	var showSliderName		11
 nim	showSliderValue	boids_simpkg/ui/settings.html#showSliderValue	var showSliderValue		12
 nim	debugMode	boids_simpkg/ui/settings.html#debugMode	var debugMode		13
-nim	settingsContent	boids_simpkg/ui/settings.html#settingsContent	proc settingsContent(): seq[Widget]		32
-nim	toggleSettingsPopup	boids_simpkg/ui/settings.html#toggleSettingsPopup,Ui	proc toggleSettingsPopup(ui: Ui)		77
-nim	drawSettingsPopup	boids_simpkg/ui/settings.html#drawSettingsPopup,Ui	proc drawSettingsPopup(ui: Ui)		81
+nim	pictureMode	boids_simpkg/ui/settings.html#pictureMode	var pictureMode		14
+nim	settingsContent	boids_simpkg/ui/settings.html#settingsContent	proc settingsContent(): seq[Widget]		50
+nim	toggleSettingsPopup	boids_simpkg/ui/settings.html#toggleSettingsPopup,Ui	proc toggleSettingsPopup(ui: Ui)		100
+nim	drawSettingsPopup	boids_simpkg/ui/settings.html#drawSettingsPopup,Ui	proc drawSettingsPopup(ui: Ui)		104

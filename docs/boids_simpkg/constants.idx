@@ -19,13 +19,14 @@ nim	clicklessUiDefault	boids_simpkg/constants.html#clicklessUiDefault	const clic
 nim	showSliderNameDefault	boids_simpkg/constants.html#showSliderNameDefault	const showSliderNameDefault		56
 nim	showSliderValueDefault	boids_simpkg/constants.html#showSliderValueDefault	const showSliderValueDefault		57
 nim	debugModeDefault	boids_simpkg/constants.html#debugModeDefault	const debugModeDefault		60
-nim	top_row	boids_simpkg/constants.html#top_row	const top_row		63
-nim	bottom_row	boids_simpkg/constants.html#bottom_row	const bottom_row		71
-nim	widgetHeight	boids_simpkg/constants.html#widgetHeight	proc widgetHeight(): float		83
-nim	widgetWidth	boids_simpkg/constants.html#widgetWidth	proc widgetWidth(): float		87
-nim	defaultButtonSize	boids_simpkg/constants.html#defaultButtonSize	proc defaultButtonSize(): Vector2		94
-nim	settingsButtonSize	boids_simpkg/constants.html#settingsButtonSize	proc settingsButtonSize(): Vector2		98
-nim	settingsButtonPos	boids_simpkg/constants.html#settingsButtonPos	proc settingsButtonPos(): Vector2		101
-nim	popupSize	boids_simpkg/constants.html#popupSize	proc popupSize(): Vector2		106
-nim	popupTopLeft	boids_simpkg/constants.html#popupTopLeft	proc popupTopLeft(): Vector2		110
+nim	pictureModeDefault	boids_simpkg/constants.html#pictureModeDefault	const pictureModeDefault		63
+nim	top_row	boids_simpkg/constants.html#top_row	const top_row		66
+nim	bottom_row	boids_simpkg/constants.html#bottom_row	const bottom_row		74
+nim	widgetHeight	boids_simpkg/constants.html#widgetHeight	proc widgetHeight(): float		86
+nim	widgetWidth	boids_simpkg/constants.html#widgetWidth	proc widgetWidth(): float		90
+nim	defaultButtonSize	boids_simpkg/constants.html#defaultButtonSize	proc defaultButtonSize(): Vector2		97
+nim	settingsButtonSize	boids_simpkg/constants.html#settingsButtonSize	proc settingsButtonSize(): Vector2		101
+nim	settingsButtonPos	boids_simpkg/constants.html#settingsButtonPos	proc settingsButtonPos(): Vector2		104
+nim	popupSize	boids_simpkg/constants.html#popupSize	proc popupSize(): Vector2		109
+nim	popupTopLeft	boids_simpkg/constants.html#popupTopLeft	proc popupTopLeft(): Vector2		113
 heading	Information for the ui elements ###	boids_simpkg/constants.html#information-for-the-ui-elements	 Information for the ui elements ###		0

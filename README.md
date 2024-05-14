@@ -1,31 +1,17 @@
 # Boids Simulator in Nim
 
-## Features
+## Table of Contents  
+[Docs](#docs)
+[Getting started](#getting-started)
+[Features](#features)
 
-- [X] Basic boids simulation
-- [X] Tunable parameters
-  - Somehow tunable
-    - [X] Window dimensions
-    - [ ] Colors
-    - [ ] Settings
-      - [ ] Starting values
-      - [ ] Presets of parameter values
-    - [ ] Size of entities
-  - UI with instant reloading
-    - [X] Cohesion, align and separation factors
-    - [X] Number of entities
-    - [X] View radius
-    - [X] Speed (max and min)
-    - [X] Separation from the edges
-    - [X] Ui behaviour
-- [X] Fancy colors
-- [ ] Optimizations
+<a name="docs">
+## Docs
 
-Current developement focus:
-- Documentation
-- Automatic screen size adaption
-- Refactor code (comments and architecure)
+Docs are available at [docs/](docs/boids_sim.html).
 
+
+<a name="getting-started">
 ## Getting started
 
 ### Binaries / Executables
@@ -92,4 +78,33 @@ Else consult the [raylib docs](https://github.com/raysan5/raylib?tab=readme-ov-f
 3. Boot from it
 4. Install Linux
 5. See chapter Linux ;)
+
+
+<a name="features">
+## Features
+
+- [X] Basic boids simulation
+- [X] Tunable parameters
+  - Somehow tunable
+    - [X] Window dimensions
+    - [ ] Colors
+    - [ ] Settings
+      - [ ] Starting values
+      - [ ] Presets of parameter values
+    - [ ] Size of entities
+  - UI with instant reloading
+    - [X] Cohesion, align and separation factors
+    - [X] Number of entities
+    - [X] View radius
+    - [X] Speed (max and min)
+    - [X] Separation from the edges
+    - [X] Ui behaviour
+- [X] Fancy colors
+- [ ] Optimizations
+
+Current developement focus:
+- Documentation
+- Automatic screen size adaption
+- Refactor code (comments and architecure)
+
 
