@@ -1,0 +1,3 @@
+nimTitle	boids_sim	boids_sim.html	module src/boids_sim		0
+nim	main	boids_sim.html#main	proc main()		15
+heading	Boids Simulator	boids_sim.html#boids-simulator	 Boids Simulator		0

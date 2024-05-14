@@ -41,33 +41,38 @@ type
 
 const
   # Font size
-  fontSize* = 18
+  fontSize* = 18 ## Default font size in pixels
 
   # Colors
-  bgColor* = Black
-  textColor* = White
-  fillColor* = Green
-  borderColor* = White
+  textColor* = White ## Text color of all text
+  bgColor* = Black ## Background color of all widgets
+  fillColor* = Green ## Fill color. Used in sliders only for the movable part
+  borderColor* = White ## Border color of widgets with borders
 
-  # Clickless ui -> update sliders on hover instead of click
-  clicklessUiDefault* = true
+  # Clickless ui
+  clicklessUiDefault* = true ## Toggle clickless UI. If on, sliders will be updated on hover
 
   # Show the name and value of the slider in the format `name: value`
-  showSliderNameDefault* = true
-  showSliderValueDefault* = true
+  showSliderNameDefault* = true ## Show the name of the sliders ("cohesion", "num triangles", etc.)
+  showSliderValueDefault* = true ## Show the value of the sliders. If both name and value are on, it will be shown in the format `name: value`
 
   # Enable debug mode
-  debugModeDefault* = false
+  debugModeDefault* = false ## Toggle debug mode. Draws the view radius, protected zone and center of mass of one bird and enables the visualization of other debug values
+
+  # Picture mode
+  pictureModeDefault* = false ## Toggle picture mode alias "Hide All". Hides all widgets. Can be reactivated on mouse click
 
   # Sliders
   top_row*: array[TopRow, SliderInfo] = [
+      ## The sliders that are placed in the top row (Separation, Alignment, Cohesion, Protected Zone)
       # Slider:      [     name,        start,  min,  max     ]
-      Separation:    ("Separation",     100.0,  0.0,  200.0   ),
-      Alignment:     ("Alignment",      22.0,   0.0,  100.0   ),
-      Cohesion:      ("Cohesion",       13.0,   0.0,  100.0   ),
+      Separation:    ("Separation",     0.5,    0.0,  1.0     ),
+      Alignment:     ("Alignment",      0.5,    0.0,  1.0     ),
+      Cohesion:      ("Cohesion",       0.5,    0.0,  1.0     ),
       ProtectedZone: ("Protected Zone", 70.0,   0.0,  200.0   ),
   ]
   bottom_row*: array[BottomRow, SliderInfo] = [
+      ## The sliders that are placed in the bottom row (Num Triangles, View Radius, Evade Edges, Min Speed, Max Speed)
       # Slider:      [     name,        start,  min,  max     ]
       NumTriangles:  ("Num Triangles",  600.0,  1.0,  2_000.0 ),
       ViewRadius:    ("View Radius",    150.0,  0.0,  600.0   ),
@@ -76,19 +81,25 @@ const
       MaxSpeed:      ("Max Speed",      400.0,  50.0, 1000.0  ),
   ]
 
-# Can't be evaluated at compile time bc of the `screenWidth` and `screenHeight` variables
+# The following values can't be evaluated at compile time bc of the `screenWidth` and `screenHeight` variables
 
-# Default widget size
-proc widgetHeight*(): float = 22.0
+proc widgetHeight*(): float =
+  ## Current widget width
+  22.0
 
 proc widgetWidth*(): float =
+  ## Current widget height (relative to screen width)
   (screenWidth.float - 2 * margin) / float(top_row.len + 1)
 
-# Settings popup
-proc defaultButtonSize*(): Vector2 = Vector2(x: 150.0, y: 30.0)
+
+#----- Settings popup -----#
+
+proc defaultButtonSize*():
+  Vector2 = Vector2(x: 150.0, y: 30.0)
 
 # Settings button
-proc settingsButtonSize*(): Vector2 = defaultButtonSize()
+proc settingsButtonSize*(): Vector2 =
+  defaultButtonSize()
 
 proc settingsButtonPos*(): Vector2 =
   Vector2(x: screenWidth.float - settingsButtonSize().x - margin,

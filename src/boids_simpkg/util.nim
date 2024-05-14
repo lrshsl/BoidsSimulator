@@ -21,6 +21,8 @@ func heading*(t: Triangle): float =
 
 # Vector2 extensions
 func `tuple`*(v: Vector2): (float, float) =
+  ## Convert a Vector2 to a tuple. This is very useful for unpacking values: \
+  ## `let (x, y) = v.tuple`
   (v.x.float, v.y.float)
 
 func ints*(v: Vector2): (int, int) =

@@ -1,0 +1,2 @@
+nimTitle	draw_widget	boids_simpkg/ui/draw_widget.html	module src/boids_simpkg/ui/draw_widget		0
+nim	draw	boids_simpkg/ui/draw_widget.html#draw,Ui,Widget	proc draw(ui: Ui; wg: Widget)		10

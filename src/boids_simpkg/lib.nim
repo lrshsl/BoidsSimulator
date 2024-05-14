@@ -1,3 +1,6 @@
+## Main module of the library.
+## This file contains the `run` procedure and related functions.
+
 import rules
 import ui/main_ui
 import ui/widgets
@@ -11,8 +14,6 @@ import nimraylib_now
 import random
 import math
 import system/iterators
-from std/strutils import parseInt
-import os as os
 
 proc triangleVertices(t: Triangle, ui: Ui): (Vector2, Vector2, Vector2) =
     let (w, h) = triangleSize.tuple
@@ -49,16 +50,17 @@ proc drawTriangles(triangles: seq[Triangle], ui: Ui) =
 
 func dt(): float = getFrameTime()
 
-proc main*() =
-  case os.paramCount()
-  of 0:
-    discard # Use defaults
-  of 2:
-    screenWidth = os.paramStr(1).parseInt
-    screenHeight = os.paramStr(2).parseInt
-  else:
-    echo "usage: boids_sim [screen_width screen_height]"
-    quit(1)
+proc localCOM(ui: Ui, triangles: seq[Triangle], t1: Triangle): Vector2 =
+  var n = 0
+  for t in triangles:
+    if distance(t.pos, t1.pos) > ui.get(ViewRadius):
+      n += 1
+      result += t.pos
+  return result.scale(1.0 / n.float)
+
+proc run*(screenSize: Vector2) =
+  ## Initizalize the window, setup variables and run the main loop.
+  ## This procedure only returns when the window is closed.
 
   initWindow(screenWidth, screenHeight, "Boids Sim")
   setTargetFPS(60)
@@ -72,10 +74,11 @@ proc main*() =
 
     ### Input ###
     mainUi.update()
+    if settings.pictureMode and isMouseButtonPressed(MouseButton.Left):
+      settings.pictureMode = false
 
     ### Rules ###
     apply_rules(triangles, mainUi, dt)
-    avoidEdges(triangles, mainUi)
     moveTriangles(triangles, dt)
 
     ### Update Triangles ###
@@ -94,7 +97,12 @@ proc main*() =
     # Triangles
     drawTriangles(triangles, mainUi)
 
-    if settings.debugMode:
+    if settings.debugMode and not settings.pictureMode:
+      let vr = mainUi.get(ViewRadius).int
+
+      # Borders
+      drawRectangleLines(vr, vr, screenWidth - 2*vr, screenHeight - 2*vr, Gray)
+
       # Protected zone
       drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ProtectedZone), Gray)
 
@@ -105,10 +113,14 @@ proc main*() =
       let (a, b, c) = triangleVertices(triangles[0], mainUi)
       drawTriangle(a, b, c, White)
 
+      let centerOfMass = mainUI.localCOM(triangles, triangles[0])
+      drawCircleLines(centerOfMass.x.int, centerOfMass.y.int, 5, Red)
+
       drawFPS(margin.int, int(widgetHeight() + 2 * margin))
 
     # User interface
-    mainUi.draw()
+    if not settings.pictureMode:
+      mainUi.draw()
 
     endDrawing()
 

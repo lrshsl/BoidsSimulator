@@ -1,4 +1,5 @@
 .git/
+nimbledeps/
 
 boids_sim
 

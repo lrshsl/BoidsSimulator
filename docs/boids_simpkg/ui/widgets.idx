@@ -1,0 +1,5 @@
+nimTitle	widgets	boids_simpkg/ui/widgets.html	module src/boids_simpkg/ui/widgets		0
+nim	update	boids_simpkg/ui/widgets.html#update,Ui,Widget	proc update(ui: Ui; wg: var Widget)		7
+nim	draw	boids_simpkg/ui/widgets.html#draw,Ui	proc draw(ui: Ui)		58
+nim	update	boids_simpkg/ui/widgets.html#update,Ui	proc update(ui: var Ui)		65
+nimgrp	update	boids_simpkg/ui/widgets.html#update-procs-all	proc		7

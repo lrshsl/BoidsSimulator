@@ -8,6 +8,7 @@ import math
 
 # Draw the widget, whatever it is
 proc draw*(ui: Ui, wg: Widget) =
+  ## Draw a widget. Is called every frame.
   let
     (x, y) = wg.pos.ints
     (w, h) = wg.size.ints

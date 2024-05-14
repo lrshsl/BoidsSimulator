@@ -1,0 +1,9 @@
+nimTitle	types	boids_simpkg/ui/types.html	module src/boids_simpkg/ui/types		0
+nim	Ui	boids_simpkg/ui/types.html#Ui	type Ui		5
+nim	Text	boids_simpkg/ui/types.html#Text	WidgetKind.Text		11
+nim	Button	boids_simpkg/ui/types.html#Button	WidgetKind.Button		11
+nim	ToggleButton	boids_simpkg/ui/types.html#ToggleButton	WidgetKind.ToggleButton		11
+nim	TextField	boids_simpkg/ui/types.html#TextField	WidgetKind.TextField		11
+nim	Slider	boids_simpkg/ui/types.html#Slider	WidgetKind.Slider		11
+nim	WidgetKind	boids_simpkg/ui/types.html#WidgetKind	enum WidgetKind		11
+nim	Widget	boids_simpkg/ui/types.html#Widget	type Widget		19

@@ -1,37 +1,20 @@
 # Boids Simulator in Nim
 
-## Features
+## Table of Contents  
+- [Docs](#docs)
+- [Getting started](#getting-started)
+- [Features](#features)
 
-- [X] Basic boids simulation
-- [X] Tunable parameters
-  - Somehow tunable
-    - [X] Window dimensions
-    - [ ] Colors
-    - [ ] Settings
-      - [ ] Starting values
-      - [ ] Presets of parameter values
-    - [X] Ui behaviour
-    - [ ] Size of entities
-  - UI with instant reloading
-    - [X] Cohesion, align and separation factors
-    - [X] Number of entities
-    - [X] View radius
-    - [X] Speed (max and min)
-    - [X] Separation from the edges
-- [X] Fancy colors
-- [ ] Optimizations
+## Docs
 
-Current developement focus:
-- Documentation
-- Automatic screen size adaption
-- Option to enable parameter tuning with click
-- Refactor code (comments and architecure)
+Docs are available at [docs/](docs/boids_sim.html).
+
 
 ## Getting started
 
 ### Binaries / Executables
 
-Some binaries may be available in the releases. Use on own risk.
+Some binaries may be available in the releases. Use at own risk.
 
 ### Build from source
 
@@ -44,7 +27,7 @@ What needs to be installed:
   - Can easily be installed through `nimble install nimraylib_now`)
 
 
-#### Linux
+#### Linux (probably also works for OSX and BSD)
 
 Download the source code:
 ```sh
@@ -64,6 +47,11 @@ The window shouldn't be resized while running. If different window dimensions ar
 nimble run -- 1000 800
 ```
 
+Opimization options can be passed: `-d:release` for an optimized build or `-d:danger` for turning off even more checks to maximize performance (must be passed before the `--`)
+```sh
+nimble run -d:release -- 1000 800
+```
+
 ##### Troubleshooting
 
 Due to dynamic links in the raylib source code, it may be necessary to get some C x11 headers on your system.
@@ -78,6 +66,7 @@ Pacman (Arch linux):
 sudo pacman -S alsa-lib mesa libx11 libxrandr libxi libxcursor libxinerama
 ```
 
+Else consult the [raylib docs](https://github.com/raysan5/raylib?tab=readme-ov-file#build-and-installation).
 
 
 #### Windows
@@ -87,4 +76,32 @@ sudo pacman -S alsa-lib mesa libx11 libxrandr libxi libxcursor libxinerama
 3. Boot from it
 4. Install Linux
 5. See chapter Linux ;)
+
+
+## Features
+
+- [X] Basic boids simulation
+- [X] Tunable parameters
+  - Somehow tunable
+    - [X] Window dimensions
+    - [ ] Colors
+    - [ ] Settings
+      - [ ] Starting values
+      - [ ] Presets of parameter values
+    - [ ] Size of entities
+  - UI with instant reloading
+    - [X] Cohesion, align and separation factors
+    - [X] Number of entities
+    - [X] View radius
+    - [X] Speed (max and min)
+    - [X] Separation from the edges
+    - [X] Ui behaviour
+- [X] Fancy colors
+- [ ] Optimizations
+
+Current developement focus:
+- Documentation
+- Automatic screen size adaption
+- Refactor code (comments and architecure)
+
 
