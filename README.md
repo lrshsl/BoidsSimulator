@@ -43,7 +43,7 @@ What needs to be installed:
   - Can easily be installed through `nimble install nimraylib_now`)
 
 
-#### Linux
+#### Linux (probably also works for OSX and BSD)
 
 Download the source code:
 ```sh
@@ -63,6 +63,11 @@ The window shouldn't be resized while running. If different window dimensions ar
 nimble run -- 1000 800
 ```
 
+Opimization options can be passed: `-d:release` for an optimized build or `-d:danger` for turning off even more checks to maximize performance (must be passed before the `--`)
+```sh
+nimble run -d:release -- 1000 800
+```
+
 ##### Troubleshooting
 
 Due to dynamic links in the raylib source code, it may be necessary to get some C x11 headers on your system.
@@ -77,6 +82,7 @@ Pacman (Arch linux):
 sudo pacman -S alsa-lib mesa libx11 libxrandr libxi libxcursor libxinerama
 ```
 
+Else consult the [raylib docs](https://github.com/raysan5/raylib?tab=readme-ov-file#build-and-installation).
 
 
 #### Windows
