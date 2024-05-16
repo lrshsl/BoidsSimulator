@@ -27,7 +27,7 @@ What needs to be installed:
   - Can easily be installed through `nimble install nimraylib_now`)
 
 
-#### Linux (probably also works for OSX and BSD)
+#### Linux or Mac (probably also works for BSD)
 
 Download the source code:
 ```sh
