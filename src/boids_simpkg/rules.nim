@@ -30,13 +30,13 @@ proc apply_rules*(boids: var seq[Triangle], ui: Ui, dt: float) =
   ## It has been combined into a single function in order to increase performance by only looping over the boids once.
 
   let
-    minSpeed = ui.get(MinSpeed)
-    maxSpeed = ui.get(MaxSpeed)
-    vr = ui.get(ViewRadius)
-    f = ui.get(EvadeEdges)
+    minSpeed = ui.get(BottomRow.MinSpeed)
+    maxSpeed = ui.get(BottomRow.MaxSpeed)
+    vr = ui.get(BottomRow.ViewRadius)
+    f = ui.get(BottomRow.EvadeEdges)
     screen = Rectangle(x: 0.0, y: 0.0,
-                       width: screenWidth.float,
-                       height: screenHeight.float)
+                       width: screenSize.x,
+                       height: screenSize.y)
 
   for t in boids.mitems:
 
@@ -66,7 +66,7 @@ proc apply_rules*(boids: var seq[Triangle], ui: Ui, dt: float) =
         # Alignment
         avgVel += other.vel - t.vel
 
-      if d < ui.get(ProtectedZone):
+      if d < ui.get(TopRow.ProtectedZone):
 
         # Separation
         separationForce += -v.normalize * dt
@@ -88,10 +88,10 @@ proc apply_rules*(boids: var seq[Triangle], ui: Ui, dt: float) =
       t.vel.y += -(vr - distanceBottom) * f
     
     var
-      cohesionForce = avgPos * ui.get(Cohesion) / 100 # Scale by 100 to make it easier to adjust
-      alignmentForce = avgVel.scale(1.0 / inView.float) * ui.get(Alignment) * 2
+      cohesionForce = avgPos * ui.get(TopRow.Cohesion) / 100 # Scale by 100 to make it easier to adjust
+      alignmentForce = avgVel.scale(1.0 / inView.float) * ui.get(TopRow.Alignment) * 2
 
-    separationForce *= ui.get(Separation) * 1000
+    separationForce *= ui.get(TopRow.Separation) * 1000
 
     t.vel += (cohesionForce + alignmentForce + separationForce) * dt
     t.vel = t.vel.clampValue(minSpeed, maxSpeed)

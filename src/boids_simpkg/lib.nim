@@ -25,11 +25,11 @@ proc generateTriangles(ui: Ui, n: int): seq[Triangle] =
   for i in 0..<n:
     let
       heading = rand(2 * PI)
-      speedRange = ui.get(MinSpeed)..ui.get(MaxSpeed)
+      speedRange = ui.get(BottomRow.MinSpeed)..ui.get(BottomRow.MaxSpeed)
       speed = rand(speedRange)
       (w, h) = triangleSize.tuple
-      x = rand(w..(screenWidth.float - w))
-      y = rand(h..(screenHeight.float - h))
+      x = rand(w..(screenSize.x - w))
+      y = rand(h..(screenSize.y - h))
     result.add(Triangle(
       pos: Vector2(x: x, y: y),
       vel: Vector2.fromRad(heading) * speed,
@@ -53,7 +53,7 @@ func dt(): float = getFrameTime()
 proc localCOM(ui: Ui, triangles: seq[Triangle], t1: Triangle): Vector2 =
   var n = 0
   for t in triangles:
-    if distance(t.pos, t1.pos) > ui.get(ViewRadius):
+    if distance(t.pos, t1.pos) > ui.get(BottomRow.ViewRadius):
       n += 1
       result += t.pos
   return result.scale(1.0 / n.float)
@@ -62,12 +62,12 @@ proc run*(screenSize: Vector2) =
   ## Initizalize the window, setup variables and run the main loop.
   ## This procedure only returns when the window is closed.
 
-  initWindow(screenWidth, screenHeight, "Boids Sim")
+  initWindow(screenSize.x.int, screenSize.y.int, "Boids Sim")
   setTargetFPS(60)
 
   var
     mainUi = setupMainUi()
-    triangles = mainUi.generateTriangles(mainUi.get(NumTriangles).int)
+    triangles = mainUi.generateTriangles(mainUi.get(BottomRow.NumTriangles).int)
 
   while not windowShouldClose():
     let dt = dt()
@@ -82,7 +82,7 @@ proc run*(screenSize: Vector2) =
     moveTriangles(triangles, dt)
 
     ### Update Triangles ###
-    let delta = mainUi.get(NumTriangles).int - triangles.len
+    let delta = mainUi.get(BottomRow.NumTriangles).int - triangles.len
     if delta > 0:
       triangles &= mainUi.generateTriangles(delta)
     elif delta < 0:
@@ -98,16 +98,16 @@ proc run*(screenSize: Vector2) =
     drawTriangles(triangles, mainUi)
 
     if settings.debugMode and not settings.pictureMode:
-      let vr = mainUi.get(ViewRadius).int
+      let vr = mainUi.get(BottomRow.ViewRadius).int
 
       # Borders
-      drawRectangleLines(vr, vr, screenWidth - 2*vr, screenHeight - 2*vr, Gray)
+      drawRectangleLines(vr, vr, screenSize.x.int - 2*vr, screenSize.y.int - 2*vr, Gray)
 
       # Protected zone
-      drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ProtectedZone), Gray)
+      drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(TopRow.ProtectedZone), Gray)
 
       # View radius
-      drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(ViewRadius), White)
+      drawCircleLines(triangles[0].pos.x.int, triangles[0].pos.y.int, mainUI.get(BottomRow.ViewRadius), White)
 
       # Color the first triangle differently
       let (a, b, c) = triangleVertices(triangles[0], mainUi)

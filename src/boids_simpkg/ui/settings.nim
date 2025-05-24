@@ -1,9 +1,9 @@
+import nimraylib_now
+
 import ../constants
 import ../util
 from draw_widget import draw
-from types import Ui, Widget
-
-import nimraylib_now
+from types import Ui, Widget, WidgetKind
 
 var
   ## Shouldn't directly be read usually, but accessor functions should be used
@@ -19,7 +19,7 @@ proc createButton(
     defaultState: bool,
     callback: proc (ui: Ui)): Widget =
   Widget(
-      kind: Button,
+      kind: WidgetKind.Button,
       pos: pos,
       size: defaultButtonSize(),
       bgColor: bgColor,

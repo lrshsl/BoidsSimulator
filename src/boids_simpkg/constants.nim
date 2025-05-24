@@ -16,7 +16,7 @@ const
 
 var
   # Screen size (default)
-  (screenWidth*, screenHeight*) = (1800, 900)
+  screenSize* = Vector2(x: 1800, y: 900)
 
 
 ### Information for the ui elements ###
@@ -36,7 +36,8 @@ type
     MaxSpeed
 
   # Values for the sliders
-  SliderInfo* = tuple[name: string, start, min, max: float]
+  SliderInfo* = tuple[name: string,
+                      start, min, max: float]
 
 
 const
@@ -81,7 +82,7 @@ const
       MaxSpeed:      ("Max Speed",      400.0,  50.0, 1000.0  ),
   ]
 
-# The following values can't be evaluated at compile time bc of the `screenWidth` and `screenHeight` variables
+# The following values can't be evaluated at compile time bc of the `screenSize` variable
 
 proc widgetHeight*(): float =
   ## Current widget width
@@ -89,7 +90,7 @@ proc widgetHeight*(): float =
 
 proc widgetWidth*(): float =
   ## Current widget height (relative to screen width)
-  (screenWidth.float - 2 * margin) / float(top_row.len + 1)
+  (screenSize.x - 2 * margin) / float(top_row.len + 1)
 
 
 #----- Settings popup -----#
@@ -102,16 +103,16 @@ proc settingsButtonSize*(): Vector2 =
   defaultButtonSize()
 
 proc settingsButtonPos*(): Vector2 =
-  Vector2(x: screenWidth.float - settingsButtonSize().x - margin,
+  Vector2(x: screenSize.x - settingsButtonSize().x - margin,
           y: margin)
 
 # Settings popup
 proc popupSize*(): Vector2 =
   Vector2(x: defaultButtonSize().x + margin * 2,
-          y: screenHeight.float * 0.8)
+          y: screenSize.y * 0.8)
 
 proc popupTopLeft*(): Vector2 =
-  Vector2(x: screenWidth.float - popupSize().x - margin,
+  Vector2(x: screenSize.x - popupSize().x - margin,
           y: margin * 2 + widgetHeight())
 
 

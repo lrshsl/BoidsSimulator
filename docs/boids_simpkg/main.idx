@@ -1,2 +1,0 @@
-nimTitle	main	boids_simpkg/main.html	module src/boids_simpkg/main		0
-nim	main	boids_simpkg/main.html#main,Vector2	proc main(screenSize: Vector2)		58

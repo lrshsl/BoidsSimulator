@@ -1,8 +1,6 @@
 import boids_simpkg/lib as lib
 import boids_simpkg/constants as constants
 
-from nimraylib_now import Vector2
-
 import os as os
 from std/strutils import parseInt
 
@@ -24,15 +22,12 @@ proc main*() =
     discard
   of 2:
     # 2 arguments -> parse as width and height
-    constants.screenWidth = os.paramStr(1).parseInt
-    constants.screenHeight = os.paramStr(2).parseInt
+    constants.screenSize.x = os.paramStr(1).parseInt.float
+    constants.screenSize.y = os.paramStr(2).parseInt.float
   else:
     # Too many arguments or only 1 argument -> exit
     echo "usage: boids_sim [screen_width screen_height]"
     quit(1)
-
-  # Pack the screen size into a `Vector2`
-  let screenSize = Vector2(x: screenWidth.float, y: screenHeight.float)
 
   # Start the main loop
   lib.run(screenSize)
